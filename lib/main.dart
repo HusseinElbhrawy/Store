@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/views/widgets/bottom_bar.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:store_app/views/screens/user_info.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
         // scaffoldBackgroundColor: Colors.white,
       ),
       title: 'Store',
-      home: const BottomNavigationBarWidget(),
+      home: const UserInfoScreen(),
     );
   }
 }
