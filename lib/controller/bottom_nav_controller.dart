@@ -16,7 +16,7 @@ class BottomNavBarcontroller extends GetxController {
     {'page': const HomeScreen(), 'appBarTitle': 'Home'},
     {'page': const FeedsScreen(), 'appBarTitle': 'Feeds'},
     {'page': const SearchScreen(), 'appBarTitle': 'Search'},
-    {'page': const CardScreen(), 'appBarTitle': 'Card'},
+    {'page': const CartScreen(), 'appBarTitle': 'Card'},
     {'page': const UserInfoScreen(), 'appBarTitle': 'User Info'},
   ];
 

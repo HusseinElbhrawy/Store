@@ -11,11 +11,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
     return GetBuilder(
       builder: (BottomNavBarcontroller controller) {
         return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-                controller.screens[controller.currentIndex]['appBarTitle']),
-          ),
+          // appBar: AppBar(
+          //   centerTitle: true,
+          //   title: Text(
+          //       controller.screens[controller.currentIndex]['appBarTitle']),
+          // ),
           floatingActionButton: Padding(
             padding: const EdgeInsets.all(0.0),
             child: FloatingActionButton(

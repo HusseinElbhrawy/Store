@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:store_app/views/screens/user_info.dart';
+import 'package:store_app/views/screens/cart.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // scaffoldBackgroundColor: Colors.white,
       ),
       title: 'Store',
-      home: const UserInfoScreen(),
+      home: const CartScreen(),
     );
   }
 }

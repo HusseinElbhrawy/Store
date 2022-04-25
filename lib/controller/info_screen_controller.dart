@@ -32,7 +32,6 @@ class InfoScreenController extends GetxController {
 
   @override
   void onInit() {
-    // _themeMiddleware.getThemeStatus();
     controller.addListener(() {
       offset = controller.offset;
       update();
