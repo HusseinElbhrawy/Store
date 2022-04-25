@@ -3,7 +3,7 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/linearicons_free_icons.dart';
 import 'package:fluttericon/linecons_icons.dart';
 import 'package:get/get.dart';
-import 'package:store_app/views/screens/cart.dart';
+import 'package:store_app/views/screens/cart/cart.dart';
 import 'package:store_app/views/screens/feeds.dart';
 import 'package:store_app/views/screens/home.dart';
 import 'package:store_app/views/screens/search.dart';
