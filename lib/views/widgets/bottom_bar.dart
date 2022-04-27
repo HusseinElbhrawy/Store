@@ -5,6 +5,7 @@ import 'package:store_app/controller/bottom_nav_controller.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
+  static String routeName = '/';
   @override
   Widget build(BuildContext context) {
     Get.put(BottomNavBarcontroller());

@@ -12,13 +12,12 @@ class FullCart extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: 100,
         backgroundColor: Colors.white,
-        leading: const Center(
-          child: Text(
-            'Cart(1)',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-            ),
+        automaticallyImplyLeading: true,
+        title: const Text(
+          'Cart(1)',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
           ),
         ),
         actions: [

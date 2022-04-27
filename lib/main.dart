@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:store_app/constants/colors.dart';
+import 'package:store_app/views/screens/cart/cart.dart';
+import 'package:store_app/views/screens/feeds.dart';
+import 'package:store_app/views/screens/home.dart';
+import 'package:store_app/views/screens/inner_screens/brand_inner_screen.dart';
+import 'package:store_app/views/screens/product_details.dart';
+import 'package:store_app/views/screens/search.dart';
+import 'package:store_app/views/screens/user_info.dart';
+import 'package:store_app/views/screens/wishlist/wishlist.dart';
 import 'package:store_app/views/widgets/bottom_bar.dart';
 
 void main() async {
@@ -14,15 +23,64 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: ConstColors.backgroundColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        // scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0.0,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
       ),
+      getPages: [
+        GetPage(
+          name: BottomNavigationBarWidget.routeName,
+          page: () => const BottomNavigationBarWidget(),
+        ),
+        GetPage(
+          name: Wishlist.routeName,
+          page: () => const Wishlist(),
+        ),
+        GetPage(
+          name: CartScreen.routeName,
+          page: () => const CartScreen(),
+        ),
+        GetPage(
+          name: ProductDetailsScreen.routeName,
+          page: () => const ProductDetailsScreen(),
+        ),
+        GetPage(
+          name: BrandInnerScreen.routeName,
+          page: () => const BrandInnerScreen(),
+        ),
+        GetPage(
+          name: FeedsScreen.routeName,
+          page: () => const FeedsScreen(),
+        ),
+        GetPage(
+          name: HomeScreen.routeName,
+          page: () => const HomeScreen(),
+        ),
+        GetPage(
+          name: SearchScreen.routeName,
+          page: () => const SearchScreen(),
+        ),
+        GetPage(
+          name: UserInfoScreen.routeName,
+          page: () => const UserInfoScreen(),
+        ),
+      ],
+
       title: 'Store',
-      // home: const FeedsScreen(),
-      home: const BottomNavigationBarWidget(),
+      initialRoute: '/',
+      // home: const ProductDetailsScreen(),
     );
   }
 }

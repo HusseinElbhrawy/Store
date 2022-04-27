@@ -10,6 +10,6 @@ class ThemeMiddleWare {
   }
 
   bool? getThemeStatus() {
-    return _box.read('isDarkTheme') as bool;
+    return _box.read('isDarkTheme');
   }
 }

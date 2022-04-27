@@ -6,12 +6,12 @@ class CustomUserListTile extends StatelessWidget {
     required this.iconData,
     required this.subTitle,
     required this.title,
-    required this.onTap,
+    this.onTap,
     this.tralling,
   }) : super(key: key);
   final String title, subTitle;
   final IconData iconData;
-  final Function onTap;
+  final Function? onTap;
   final Widget? tralling;
 
   @override
@@ -21,7 +21,7 @@ class CustomUserListTile extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.red,
         child: ListTile(
-          onTap: () => onTap(),
+          onTap: () => onTap!(),
           title: Text(title),
           subtitle: Text(subTitle),
           leading: Icon(iconData),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:store_app/constants/icons.dart';
 import 'package:store_app/controller/info_screen_controller.dart';
+import 'package:store_app/views/screens/cart/cart.dart';
+import 'package:store_app/views/screens/wishlist/wishlist.dart';
 import 'package:store_app/views/widgets/custom_title.dart';
 import 'package:store_app/views/widgets/custom_user_listtile.dart';
 
@@ -22,18 +25,22 @@ class InfoScreenBody extends StatelessWidget {
             const CustomTitle(title: 'User Bag'),
             const Divider(thickness: 2),
             CustomUserListTile(
-              iconData: Icons.heart_broken_outlined,
+              iconData: MyIcons.emptyHeart,
               subTitle: '',
               title: 'Wishlist',
               tralling: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(Wishlist.routeName);
+              },
             ),
             CustomUserListTile(
-              iconData: Icons.shopping_cart_checkout_outlined,
+              iconData: MyIcons.shopCart,
               subTitle: '',
               title: 'Cart',
               tralling: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(CartScreen.routeName);
+              },
             ),
             const CustomTitle(title: 'User Information'),
             const Divider(thickness: 2),
@@ -49,11 +56,12 @@ class InfoScreenBody extends StatelessWidget {
               title: 'Phone Number',
               onTap: () {},
             ),
-            CustomUserListTile(
+            const CustomUserListTile(
               iconData: Icons.local_shipping,
               subTitle: 'Empty',
               title: 'Shipping Address',
-              onTap: () {},
+              onTap: null,
+              // onTap: () {},
             ),
             CustomUserListTile(
               iconData: Icons.watch_later,
@@ -81,10 +89,6 @@ class InfoScreenBody extends StatelessWidget {
               subTitle: '',
               title: 'Sign Out',
               onTap: () {},
-            ),
-            const SizedBox(
-              height: 150,
-              // child: const Text(''),
             ),
           ],
         ),

@@ -7,6 +7,7 @@ import 'package:store_app/views/widgets/info_screen_body.dart';
 
 class UserInfoScreen extends StatelessWidget {
   const UserInfoScreen({Key? key}) : super(key: key);
+  static const routeName = '/use-info';
 
   @override
   Widget build(BuildContext context) {
