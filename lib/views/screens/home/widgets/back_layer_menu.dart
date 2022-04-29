@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:store_app/constants/colors.dart';
 import 'package:store_app/constants/icons.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
-import 'package:store_app/views/screens/feeds.dart';
+import 'package:store_app/views/screens/feeds/feeds.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
-import 'package:store_app/views/widgets/back_layer_menu_item_widget.dart';
+import 'package:store_app/views/screens/home/widgets/back_layer_menu_item_widget.dart';
 
 class BackLayerMenu extends StatelessWidget {
   const BackLayerMenu({Key? key}) : super(key: key);

@@ -603,9 +603,9 @@ final List kBrandImages = [
   'assets/images/apple.jpg',
   'assets/images/Dell.jpg',
   'assets/images/h&m.jpg',
+  'assets/images/Huawei.jpg',
   'assets/images/nike.jpg',
   'assets/images/samsung.jpg',
-  'assets/images/Huawei.jpg',
 ];
 final List<Map<String, dynamic>> kCategoriesImages = [
   {
@@ -637,3 +637,6 @@ final List<Map<String, dynamic>> kCategoriesImages = [
     'categoryImagePath': 'assets/images/CatWatches.jpg',
   },
 ];
+
+List<ProductModel> kPopularProducts =
+    kProducts.where((element) => element.isPopular).toList();

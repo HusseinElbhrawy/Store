@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:store_app/constants/colors.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
-import 'package:store_app/views/screens/feeds.dart';
-import 'package:store_app/views/screens/home.dart';
-import 'package:store_app/views/screens/inner_screens/brand_inner_screen.dart';
-import 'package:store_app/views/screens/product_details.dart';
-import 'package:store_app/views/screens/search.dart';
-import 'package:store_app/views/screens/user_info.dart';
+import 'package:store_app/views/screens/feeds/feeds.dart';
+import 'package:store_app/views/screens/home/home.dart';
+import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
+import 'package:store_app/views/screens/category/category_screen.dart';
+import 'package:store_app/views/screens/product_details/product_details.dart';
+import 'package:store_app/views/screens/search/search.dart';
+import 'package:store_app/views/screens/user_information/user_info.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
 import 'package:store_app/views/widgets/bottom_bar.dart';
 
@@ -75,6 +76,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: UserInfoScreen.routeName,
           page: () => const UserInfoScreen(),
+        ),
+        GetPage(
+          name: CategoryScreen.routeName,
+          page: () => const CategoryScreen(),
         ),
       ],
 

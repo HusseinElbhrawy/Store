@@ -3,10 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/constant.dart';
-import 'package:store_app/views/screens/inner_screens/brand_inner_screen.dart';
-import 'package:store_app/views/screens/product_details.dart';
-import 'package:store_app/views/widgets/category_item_widget.dart';
-import 'package:store_app/views/widgets/feed_screen_item_widget.dart';
+import 'package:store_app/views/screens/feeds/feeds.dart';
+import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
+import 'package:store_app/views/screens/category/category_screen.dart';
+import 'package:store_app/views/screens/category/widgets/category_item_widget.dart';
+import 'package:store_app/views/screens/home/widgets/popular_product_item_widget.dart';
 import 'package:store_app/views/widgets/title_view_all_widget.dart';
 
 class FrontLayerMenu extends StatelessWidget {
@@ -52,14 +53,27 @@ class FrontLayerMenu extends StatelessWidget {
             itemCount: kCategoriesImages.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return CategoryItemWidget(
-                categoriesImages: kCategoriesImages[index]['categoryImagePath'],
-                name: kCategoriesImages[index]['categoryName'],
+              return InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: () {
+                  Get.toNamed(
+                    CategoryScreen.routeName,
+                    arguments: kCategoriesImages[index]['categoryName'],
+                  );
+                },
+                child: CategoryItemWidget(
+                  categoriesImages: kCategoriesImages[index]
+                      ['categoryImagePath'],
+                  name: kCategoriesImages[index]['categoryName'],
+                ),
               );
             },
           ),
         ),
-        const TitleWithViewAllWidget(title: 'Popular Brands'),
+        TitleWithViewAllWidget(
+          title: 'Popular Brands',
+          onTap: () {},
+        ),
         Center(
           child: MediaQuery.of(context).orientation == Orientation.portrait
               ? SizedBox(
@@ -94,7 +108,13 @@ class FrontLayerMenu extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(25),
                           onTap: () {
-                            Get.toNamed(BrandInnerScreen.routeName);
+                            Get.toNamed(
+                              BrandInnerScreen.routeName,
+                              arguments: {
+                                'index': index,
+                                'brandName': kBrands[index],
+                              },
+                            );
                           },
                           child: Image.asset(
                             kBrandImages[index],
@@ -108,24 +128,30 @@ class FrontLayerMenu extends StatelessWidget {
                 )
               : null,
         ),
-        const TitleWithViewAllWidget(title: 'Popular Products'),
+        TitleWithViewAllWidget(
+            title: 'Popular Products',
+            onTap: () {
+              Get.toNamed(FeedsScreen.routeName, arguments: 'true');
+            }),
         SizedBox(
-          height: 250,
+          height: 300,
           child: ListView.builder(
-            itemCount: 6,
+            itemCount: kPopularProducts.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return SizedBox(
-                //For Testing
-                child: InkWell(
-                  child: const FeedScreenItem(),
-                  onTap: () {
-                    Get.toNamed(ProductDetailsScreen.routeName);
-                  },
-                ),
-                width: 200,
+              // return SizedBox(
+              //   //For Testing
+              //   child: InkWell(
+              //     child: const FeedScreenItem(),
+              //     onTap: () {
+              //       Get.toNamed(ProductDetailsScreen.routeName);
+              //     },
+              //   ),
+              //   width: 200,
+              // );
+              return PopularProductsItemWidget(
+                product: kPopularProducts[index],
               );
-              // return const PopularProductsItemWidget();
             },
           ),
         ),

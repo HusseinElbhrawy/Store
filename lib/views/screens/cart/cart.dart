@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/views/screens/cart/empty_cart.dart';
-import 'package:store_app/views/screens/cart/full_cart.dart';
+import 'package:get/get.dart';
+import 'package:store_app/controller/cart_controller.dart';
+import 'package:store_app/views/screens/cart/widgets/empty_cart.dart';
+import 'package:store_app/views/screens/cart/widgets/full_cart.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -8,11 +10,15 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List productions = [0];
-    if (productions.isEmpty) {
-      return const EmptyCart();
-    } else {
-      return const FullCart();
-    }
+    final CartController cartController = Get.put(CartController());
+    return GetBuilder(
+      builder: (CartController controller) {
+        if (cartController.cartItems.isEmpty) {
+          return const EmptyCart();
+        } else {
+          return FullCart(cartController: cartController);
+        }
+      },
+    );
   }
 }

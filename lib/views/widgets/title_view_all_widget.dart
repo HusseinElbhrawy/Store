@@ -4,8 +4,10 @@ class TitleWithViewAllWidget extends StatelessWidget {
   const TitleWithViewAllWidget({
     Key? key,
     required this.title,
+    required this.onTap,
   }) : super(key: key);
   final String title;
+  final Function onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,7 +20,7 @@ class TitleWithViewAllWidget extends StatelessWidget {
           ),
           const Spacer(),
           TextButton(
-            onPressed: () {},
+            onPressed: () => onTap(),
             child: const Text(
               'View All',
               style: TextStyle(

@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/constant.dart';
-import 'package:store_app/views/widgets/feed_screen_item_widget.dart';
+import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
 
 class FeedsScreen extends StatelessWidget {
-  const FeedsScreen({Key? key}) : super(key: key);
+  const FeedsScreen({
+    Key? key,
+  }) : super(key: key);
   static const routeName = '/feeds';
-
   @override
   Widget build(BuildContext context) {
+    var viewAll = Get.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -28,7 +31,7 @@ class FeedsScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           children: [
             ...List.generate(
-              kProducts.length,
+              viewAll != null ? kPopularProducts.length : kProducts.length,
               (index) {
                 return StaggeredGridTile.count(
                   crossAxisCellCount: 2,
@@ -40,7 +43,12 @@ class FeedsScreen extends StatelessWidget {
                           : index.isEven
                               ? 2.5
                               : 3,
-                  child: FeedScreenItem(product: kProducts[index]),
+                  child: FeedScreenItem(
+                    product: viewAll != null
+                        ? kPopularProducts[index]
+                        : kProducts[index],
+                    comeFromFeed: true,
+                  ),
                 );
               },
             ),

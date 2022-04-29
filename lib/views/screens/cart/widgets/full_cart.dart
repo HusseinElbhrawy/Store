@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/views/widgets/cart_Item.dart';
+import 'package:store_app/controller/cart_controller.dart';
+import 'package:store_app/views/screens/cart/widgets/cart_Item.dart';
 
 class FullCart extends StatelessWidget {
   const FullCart({
     Key? key,
+    required this.cartController,
   }) : super(key: key);
-
+  final CartController cartController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,9 @@ class FullCart extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cartController.deletedAllProduct();
+            },
             icon: const Icon(
               Icons.delete_outlined,
             ),
@@ -30,8 +34,12 @@ class FullCart extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => const CartItem(),
+        itemCount: cartController.cartItems.length,
+        itemBuilder: (context, index) => CartItem(
+          products: cartController.cartItems.values.toList()[index],
+          index: index,
+          // products: cartController.cartItems.values.toList()[index],
+        ),
       ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(8),
@@ -69,12 +77,14 @@ class FullCart extends StatelessWidget {
             ),
             Expanded(
               child: Text.rich(
-                const TextSpan(
+                TextSpan(
                   text: "Total:\t",
                   children: [
                     TextSpan(
-                        text: "US \$400.000",
-                        style: TextStyle(color: Colors.blue))
+                      text:
+                          "US \$${cartController.totalAmount.toStringAsFixed(2)}",
+                      style: const TextStyle(color: Colors.blue),
+                    )
                   ],
                 ),
                 textAlign: TextAlign.center,

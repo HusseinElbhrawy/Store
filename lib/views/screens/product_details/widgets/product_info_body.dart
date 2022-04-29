@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/constants/colors.dart';
-import 'package:store_app/views/widgets/details_item_widget.dart';
-import 'package:store_app/views/widgets/feed_screen_item_widget.dart';
+import 'package:store_app/constants/constant.dart';
+import 'package:store_app/model/product_moel.dart';
+import 'package:store_app/views/screens/product_details/widgets/details_item_widget.dart';
+import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
 
 class ProductInfoBody extends StatelessWidget {
   const ProductInfoBody({
     Key? key,
+    required this.product,
   }) : super(key: key);
-
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> suggestedList = kProducts.where((element) {
+      return element.productCategoryName
+          .toLowerCase()
+          .contains(product.productCategoryName.toLowerCase());
+    }).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -67,10 +75,10 @@ class ProductInfoBody extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
-                      child: const Text(
-                        'title',
+                      child: Text(
+                        product.title,
                         maxLines: 2,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 28.0,
                           fontWeight: FontWeight.w600,
                         ),
@@ -80,7 +88,7 @@ class ProductInfoBody extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      'US \$ 15',
+                      'US \$ ${product.price}',
                       style: TextStyle(
                           color: ConstColors.subTitle,
                           fontWeight: FontWeight.bold,
@@ -100,7 +108,7 @@ class ProductInfoBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Description',
+                  product.description,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 21.0,
@@ -117,21 +125,21 @@ class ProductInfoBody extends StatelessWidget {
                   height: 1,
                 ),
               ),
-              const DetailsItemWidget(
+              DetailsItemWidget(
                 title1: 'Brand',
-                title2: 'BrandName',
+                title2: product.brand,
               ),
-              const DetailsItemWidget(
+              DetailsItemWidget(
                 title1: 'Quantity',
-                title2: '12 Left',
+                title2: '${product.quantity} Left',
               ),
-              const DetailsItemWidget(
+              DetailsItemWidget(
                 title1: 'Catefory',
-                title2: 'Category Name',
+                title2: product.productCategoryName,
               ),
-              const DetailsItemWidget(
+              DetailsItemWidget(
                 title1: 'Popularity',
-                title2: 'Popular',
+                title2: product.isPopular ? 'Popular' : 'Unpopular ',
               ),
               const Divider(
                 thickness: 1,
@@ -193,14 +201,17 @@ class ProductInfoBody extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: 250,
+          height: 350,
           child: ListView.builder(
-            itemCount: 7,
+            itemCount: suggestedList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext ctx, int index) {
-              return const SizedBox(
-                child: FeedScreenItem(),
-                width: 200,
+              return SizedBox(
+                child: FeedScreenItem(
+                  product: suggestedList[index],
+                  comeFromFeed: false,
+                ),
+                width: 220,
               );
             },
           ),

@@ -4,10 +4,10 @@ import 'package:fluttericon/linearicons_free_icons.dart';
 import 'package:fluttericon/linecons_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
-import 'package:store_app/views/screens/feeds.dart';
-import 'package:store_app/views/screens/home.dart';
-import 'package:store_app/views/screens/search.dart';
-import 'package:store_app/views/screens/user_info.dart';
+import 'package:store_app/views/screens/feeds/feeds.dart';
+import 'package:store_app/views/screens/home/home.dart';
+import 'package:store_app/views/screens/search/search.dart';
+import 'package:store_app/views/screens/user_information/user_info.dart';
 
 class BottomNavBarcontroller extends GetxController {
   int currentIndex = 0;

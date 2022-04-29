@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store_app/model/product_moel.dart';
+import 'package:store_app/views/screens/product_details/product_details.dart';
 
 class BrandInnerScreenItemWidget extends StatelessWidget {
   const BrandInnerScreenItemWidget({
     Key? key,
+    required this.productModel,
   }) : super(key: key);
-
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(ProductDetailsScreen.routeName, arguments: productModel);
+      },
       child: Container(
         // color: Colors.red,
         padding: const EdgeInsets.only(left: 5.0, right: 5.0),
@@ -22,18 +28,19 @@ class BrandInnerScreenItemWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   // color: Theme.of(context).backgroundColor,
                   color: Colors.white,
                   image: DecorationImage(
                     image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PdHtXka2-bDDww6Nuect3Mt9IwpE4v4HNw&usqp=CAU',
+                      productModel.imageUrl,
                     ),
                   ),
-                  borderRadius: BorderRadius.all(
+                  //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PdHtXka2-bDDww6Nuect3Mt9IwpE4v4HNw&usqp=CAU
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(10.0),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.grey,
                       offset: Offset(2.0, 2.0),
@@ -65,30 +72,31 @@ class BrandInnerScreenItemWidget extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'title',
+                      productModel.title,
                       maxLines: 4,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     FittedBox(
                       child: Text(
-                        'US 16 \$',
+                        'US ${productModel.price.toString()} \$',
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.red,
                           fontSize: 30.0,
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.0),
-                    Text('CatergoryName',
-                        style: TextStyle(color: Colors.grey, fontSize: 18.0)),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
+                    Text(productModel.productCategoryName,
+                        style: const TextStyle(
+                            color: Colors.grey, fontSize: 18.0)),
+                    const SizedBox(height: 20.0),
                   ],
                 ),
               ),

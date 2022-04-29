@@ -1,8 +1,8 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 import 'package:store_app/constants/colors.dart';
-import 'package:store_app/views/widgets/back_layer_menu.dart';
-import 'package:store_app/views/widgets/front_layer_menu.dart';
+import 'package:store_app/views/screens/home/widgets/back_layer_menu.dart';
+import 'package:store_app/views/screens/home/widgets/front_layer_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
