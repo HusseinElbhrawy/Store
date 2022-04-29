@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/icons.dart';
 import 'package:store_app/controller/cart_controller.dart';
+import 'package:store_app/controller/wish_controller.dart';
 import 'package:store_app/model/cart.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
@@ -64,20 +65,40 @@ class PopularProductsItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional.topEnd,
-              child: Material(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.transparent,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.star_outline,
-                    color: Colors.black,
+            GetBuilder(
+              init: WishController(),
+              autoRemove: false,
+              builder: (WishController controller) {
+                return Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: Material(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.transparent,
+                    child: IconButton(
+                      onPressed: () {
+                        controller.addToWishList(
+                          product: CartModel(
+                            id: product.id,
+                            title: product.title,
+                            price: product.price,
+                            quantity: product.quantity,
+                            imageUrl: product.imageUrl,
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        controller.isAddedToWishList(id: product.id)
+                            ? MyIcons.fullStar
+                            : MyIcons.emptyStar,
+                        color: controller.isAddedToWishList(id: product.id)
+                            ? Colors.red
+                            : Colors.black,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
             Align(
               alignment: AlignmentDirectional.centerEnd,

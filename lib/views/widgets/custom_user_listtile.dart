@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomUserListTile extends StatelessWidget {
-  const CustomUserListTile({
-    Key? key,
-    required this.iconData,
-    required this.subTitle,
-    required this.title,
-    this.onTap,
-    this.tralling,
-  }) : super(key: key);
+  const CustomUserListTile(
+      {Key? key,
+      required this.subTitle,
+      required this.title,
+      required this.leading,
+      this.showNumber = false,
+      this.onTap,
+      this.tralling})
+      : super(key: key);
   final String title, subTitle;
-  final IconData iconData;
+  final Widget leading;
   final Function? onTap;
   final Widget? tralling;
+  final bool? showNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,11 @@ class CustomUserListTile extends StatelessWidget {
         splashColor: Colors.red,
         child: ListTile(
           onTap: () => onTap!(),
+          enableFeedback: true,
+          isThreeLine: false,
           title: Text(title),
           subtitle: Text(subTitle),
-          leading: Icon(iconData),
+          leading: leading,
           trailing: tralling,
         ),
       ),

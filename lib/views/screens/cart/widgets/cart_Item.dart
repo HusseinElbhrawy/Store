@@ -20,10 +20,7 @@ class CartItem extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadiusDirectional.only(
-          topEnd: Radius.circular(18),
-          bottomEnd: Radius.circular(18),
-        ),
+        borderRadius: BorderRadiusDirectional.all(Radius.circular(8)),
       ),
       child: Row(
         children: [
@@ -107,6 +104,13 @@ class CartItem extends StatelessWidget {
                                       imageUrl: products.imageUrl,
                                     ),
                                   );
+                                  if (products.quantity == 1) {
+                                    Get.snackbar(
+                                      'Warning',
+                                      'You can\'t decrement item less than one',
+                                      backgroundColor: Colors.white70,
+                                    );
+                                  }
                                 },
                                 icon: const Icon(
                                   Entypo.minus,

@@ -12,6 +12,8 @@ class MyIcons {
   static const IconData save = Icons.save;
   static const IconData share = Icons.share;
   static const IconData payment = Icons.payment;
+  static const IconData emptyStar = Icons.star_outline;
+  static const IconData fullStar = Icons.star_outlined;
   // static final user = Icons.user ;
   // static final IconData bag = ;
   // static final Icon wishlish = Icons;

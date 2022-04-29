@@ -5,9 +5,11 @@ class TitleWithViewAllWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.onTap,
+    this.isPopularBrand = true,
   }) : super(key: key);
   final String title;
   final Function onTap;
+  final bool? isPopularBrand;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,15 +21,17 @@ class TitleWithViewAllWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           const Spacer(),
-          TextButton(
-            onPressed: () => onTap(),
-            child: const Text(
-              'View All',
-              style: TextStyle(
-                color: Colors.red,
-              ),
-            ),
-          )
+          isPopularBrand == true
+              ? const SizedBox.shrink()
+              : TextButton(
+                  onPressed: () => onTap(),
+                  child: const Text(
+                    'View All',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                )
         ],
       ),
     );

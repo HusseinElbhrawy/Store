@@ -8,6 +8,7 @@ class EmptyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -38,7 +39,7 @@ class EmptyCart extends StatelessWidget {
           Container(
             margin: const EdgeInsets.all(25),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: null,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.red),
                 padding: MaterialStateProperty.all(

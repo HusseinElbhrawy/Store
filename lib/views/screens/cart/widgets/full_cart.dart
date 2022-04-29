@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store_app/controller/cart_controller.dart';
 import 'package:store_app/views/screens/cart/widgets/cart_Item.dart';
 
@@ -15,17 +16,46 @@ class FullCart extends StatelessWidget {
         leadingWidth: 100,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
-        title: const Text(
-          'Cart(1)',
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-          ),
+        title: GetBuilder(
+          // init: CartController(),
+          builder: (CartController controller) {
+            return Text(
+              'Cart(${controller.cartItems.length})',
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            );
+          },
         ),
         actions: [
           IconButton(
             onPressed: () {
-              cartController.deletedAllProduct();
+              Get.dialog(
+                AlertDialog(
+                  title: const Text(
+                    '⚠️\tAre You Sure to delete all products',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                        cartController.deletedAllProduct();
+                      },
+                      child: const Text(
+                        'Delete',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
             icon: const Icon(
               Icons.delete_outlined,
@@ -35,6 +65,7 @@ class FullCart extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: cartController.cartItems.length,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => CartItem(
           products: cartController.cartItems.values.toList()[index],
           index: index,

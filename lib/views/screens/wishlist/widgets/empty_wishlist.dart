@@ -38,7 +38,7 @@ class EmptyWishlist extends StatelessWidget {
           Container(
             margin: const EdgeInsets.all(25),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: null,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.red),
                 padding: MaterialStateProperty.all(

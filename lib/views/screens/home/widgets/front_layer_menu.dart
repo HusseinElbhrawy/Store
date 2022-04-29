@@ -70,9 +70,12 @@ class FrontLayerMenu extends StatelessWidget {
             },
           ),
         ),
-        TitleWithViewAllWidget(
-          title: 'Popular Brands',
-          onTap: () {},
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TitleWithViewAllWidget(
+            title: 'Popular Brands',
+            onTap: () {},
+          ),
         ),
         Center(
           child: MediaQuery.of(context).orientation == Orientation.portrait
@@ -130,6 +133,7 @@ class FrontLayerMenu extends StatelessWidget {
         ),
         TitleWithViewAllWidget(
             title: 'Popular Products',
+            isPopularBrand: false,
             onTap: () {
               Get.toNamed(FeedsScreen.routeName, arguments: 'true');
             }),
