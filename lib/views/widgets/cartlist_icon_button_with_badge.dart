@@ -13,8 +13,9 @@ class CartListIconButtonWithBage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GetBuilder(
+        init: CartController(),
         builder: (CartController controller) {
           return Badge(
             badgeColor: const Color.fromARGB(255, 100, 73, 181),

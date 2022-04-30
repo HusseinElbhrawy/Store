@@ -11,6 +11,7 @@ import 'package:store_app/views/screens/product_details/product_details.dart';
 import 'package:store_app/views/screens/search/search.dart';
 import 'package:store_app/views/screens/user_information/user_info.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
+import 'package:store_app/views/test.dart';
 import 'package:store_app/views/widgets/bottom_bar.dart';
 
 void main() async {
@@ -85,8 +86,8 @@ class MyApp extends StatelessWidget {
       ],
 
       title: 'Store',
-      initialRoute: '/',
-      // home: const ProductDetailsScreen(),
+      // initialRoute: '/',
+      home: const SearchScreen(),
     );
   }
 }
