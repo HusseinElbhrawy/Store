@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/icons.dart';
 import 'package:store_app/controller/cart_controller.dart';
-import 'package:store_app/controller/wish_controller.dart';
-import 'package:store_app/model/cart.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/product_details/widgets/product_info_body.dart';
 import 'package:store_app/views/screens/product_details/widgets/product_info_bottm_nav_bar.dart';
+import 'package:store_app/views/widgets/cartlist_icon_button_with_badge.dart';
+import 'package:store_app/views/widgets/wishlist_icon_button_with_bage.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({Key? key}) : super(key: key);
@@ -20,61 +19,14 @@ class ProductDetailsScreen extends StatelessWidget {
       CartController(),
       permanent: true,
     );
-    final WishController wishController = Get.find();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        actions: [
-          GetBuilder(
-            init: WishController(),
-            builder: (WishController controller) => IconButton(
-              onPressed: () {
-                if (controller.isAddedToWishList(id: product.id)) {
-                  controller.removeFromWishList(id: product.id);
-                } else {
-                  controller.addToWishList(
-                    product: CartModel(
-                      id: product.id,
-                      title: product.title,
-                      price: product.price,
-                      quantity: product.quantity,
-                      imageUrl: product.imageUrl,
-                    ),
-                  );
-                }
-              },
-              icon: Icon(
-                controller.isAddedToWishList(id: product.id)
-                    ? MyIcons.heart
-                    : MyIcons.emptyHeart,
-                color: Colors.red,
-              ),
-            ),
-          ),
-          GetBuilder(
-            builder: (CartController controller) {
-              return IconButton(
-                onPressed: controller.isAddedToCart(id: product.id)
-                    ? null
-                    : () {
-                        cartController.addToCart(
-                          product: CartModel(
-                            id: product.id,
-                            title: product.title,
-                            price: product.price,
-                            quantity: 1,
-                            imageUrl: product.imageUrl,
-                          ),
-                        );
-                      },
-                icon: const Icon(
-                  MyIcons.shopCart,
-                ),
-              );
-            },
-          ),
+        actions: const [
+          WishlistIconButtonWithBadge(),
+          CartListIconButtonWithBage(),
         ],
       ),
       body: Stack(

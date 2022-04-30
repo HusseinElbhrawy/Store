@@ -58,7 +58,7 @@ class CartItem extends StatelessWidget {
                     const Spacer(),
                     IconButton(
                       onPressed: () {
-                        cartController.deleteItem(product: products);
+                        cartController.deleteItem(id: products.id);
                       },
                       icon: const Icon(
                         Icons.clear_outlined,

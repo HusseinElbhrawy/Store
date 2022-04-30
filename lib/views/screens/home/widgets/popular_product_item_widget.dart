@@ -77,15 +77,19 @@ class PopularProductsItemWidget extends StatelessWidget {
                     color: Colors.transparent,
                     child: IconButton(
                       onPressed: () {
-                        controller.addToWishList(
-                          product: CartModel(
-                            id: product.id,
-                            title: product.title,
-                            price: product.price,
-                            quantity: product.quantity,
-                            imageUrl: product.imageUrl,
-                          ),
-                        );
+                        if (controller.isAddedToWishList(id: product.id)) {
+                          controller.removeFromWishList(id: product.id);
+                        } else {
+                          controller.addToWishList(
+                            product: CartModel(
+                              id: product.id,
+                              title: product.title,
+                              price: product.price,
+                              quantity: product.quantity,
+                              imageUrl: product.imageUrl,
+                            ),
+                          );
+                        }
                       },
                       icon: Icon(
                         controller.isAddedToWishList(id: product.id)
@@ -119,7 +123,7 @@ class PopularProductsItemWidget extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     child: IconButton(
-                      icon: const Icon(MyIcons.shopCart),
+                      icon: const Icon(MyIcons.emptyShopCart),
                       onPressed: controller.isAddedToCart(id: product.id)
                           ? null
                           : () {

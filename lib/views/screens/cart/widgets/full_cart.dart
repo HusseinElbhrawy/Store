@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/cart_controller.dart';
 import 'package:store_app/views/screens/cart/widgets/cart_Item.dart';
+import 'package:store_app/views/widgets/custom_dialog.dart';
 
 class FullCart extends StatelessWidget {
   const FullCart({
@@ -31,30 +32,11 @@ class FullCart extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.dialog(
-                AlertDialog(
-                  title: const Text(
-                    '⚠️\tAre You Sure to delete all products',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Get.back();
-                        cartController.deletedAllProduct();
-                      },
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                ),
+              customDialog(
+                onTap: () {
+                  Get.back();
+                  cartController.deletedAllProduct();
+                },
               );
             },
             icon: const Icon(

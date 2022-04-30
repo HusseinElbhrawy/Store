@@ -12,9 +12,6 @@ class BrandInnerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
       body: GetBuilder(
         init: BrandInnerScreenController(),
         builder: (BrandInnerScreenController controller) {

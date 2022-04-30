@@ -3,6 +3,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/constant.dart';
 import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
+import 'package:store_app/views/widgets/cartlist_icon_button_with_badge.dart';
+import 'package:store_app/views/widgets/wishlist_icon_button_with_bage.dart';
 
 class FeedsScreen extends StatelessWidget {
   const FeedsScreen({
@@ -15,13 +17,17 @@ class FeedsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Feeds',
-          style: TextStyle(
+        title: Text(
+          viewAll == 'true' ? 'Popular Products' : 'Feeds',
+          style: const TextStyle(
             color: Colors.black,
           ),
         ),
         backgroundColor: Colors.white,
+        actions: const [
+          WishlistIconButtonWithBadge(),
+          CartListIconButtonWithBage(),
+        ],
       ),
       backgroundColor: const Color(0xffE1DFE1),
       body: SingleChildScrollView(

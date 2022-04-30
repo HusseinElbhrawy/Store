@@ -60,8 +60,8 @@ class CartController extends GetxController {
     update();
   }
 
-  void deleteItem({required CartModel product}) {
-    _cartItems.remove(product.id);
+  void deleteItem({required String id}) {
+    _cartItems.remove(id);
     update();
   }
 

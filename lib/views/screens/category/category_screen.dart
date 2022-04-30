@@ -37,7 +37,7 @@ class CategoryScreen extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              MyIcons.shopCart,
+              MyIcons.emptyShopCart,
             ),
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/wish_controller.dart';
 import 'package:store_app/views/screens/wishlist/widgets/wish_list_item_widget.dart';
+import 'package:store_app/views/widgets/custom_dialog.dart';
 
 class FullWishlist extends StatelessWidget {
   const FullWishlist({Key? key}) : super(key: key);
@@ -16,6 +17,21 @@ class FullWishlist extends StatelessWidget {
             'Wishlish(${wishController.wishList.length})',
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              customDialog(
+                onTap: () {
+                  Get.back();
+                  wishController.removeAllWishlistItems();
+                },
+              );
+            },
+            icon: const Icon(
+              Icons.delete_outlined,
+            ),
+          )
+        ],
       ),
       body: GetBuilder(
         init: WishController(),

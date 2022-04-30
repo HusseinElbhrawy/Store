@@ -30,4 +30,9 @@ class WishController extends GetxController {
     _wishList.remove(id);
     update();
   }
+
+  void removeAllWishlistItems() {
+    _wishList.clear();
+    update();
+  }
 }

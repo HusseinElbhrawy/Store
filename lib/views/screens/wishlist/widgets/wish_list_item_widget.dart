@@ -16,14 +16,16 @@ class WishListItemWidget extends StatelessWidget {
     return Ink(
       padding: const EdgeInsets.all(8),
       child: ListTile(
-        horizontalTitleGap: 20,
+        horizontalTitleGap: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         contentPadding: const EdgeInsets.all(20),
         minVerticalPadding: 25,
         iconColor: Colors.red,
-        tileColor: Colors.grey.shade400,
+        tileColor: Colors.white,
         leading: Image.network(
           product.imageUrl,
+          height: double.infinity,
+          width: 50,
         ),
         title: Text(product.title),
         subtitle: Text('${product.price.toStringAsFixed(2)} \$'),

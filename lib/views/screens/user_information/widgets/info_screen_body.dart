@@ -81,7 +81,7 @@ class InfoScreenBody extends StatelessWidget {
                                 : controller.cartItems.length.toString()),
                           ),
                           Icon(
-                            MyIcons.shopCart,
+                            MyIcons.emptyShopCart,
                             size: 25,
                             color: controller.cartItems.isEmpty
                                 ? Colors.grey

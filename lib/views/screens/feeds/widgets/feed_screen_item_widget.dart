@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/model/product_moel.dart';
+import 'package:store_app/views/screens/feeds/widgets/custom_feed_screen_dialog.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
 
 class FeedScreenItem extends StatelessWidget {
@@ -17,13 +18,11 @@ class FeedScreenItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        log('Clicked ');
         log(Get.previousRoute);
         comeFromFeed == true
             ? Get.toNamed(
                 ProductDetailsScreen.routeName,
                 arguments: product,
-                // preventDuplicates: false,
                 parameters: {
                   'commingFromFeeds': 'true',
                 },
@@ -31,7 +30,6 @@ class FeedScreenItem extends StatelessWidget {
             : Get.offNamed(
                 ProductDetailsScreen.routeName,
                 arguments: product,
-                // preventDuplicates: false,
                 parameters: {
                   'commingFromFeeds': 'true',
                 },
@@ -89,7 +87,13 @@ class FeedScreenItem extends StatelessWidget {
                       color: Colors.transparent,
                       child: IconButton(
                         splashColor: Colors.red,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.dialog(
+                            CustomFeedScreenDialog(
+                              productModel: product!,
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.more_horiz,
                           color: Colors.grey.shade700,

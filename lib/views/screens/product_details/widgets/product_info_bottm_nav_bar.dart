@@ -36,7 +36,9 @@ class ProductInfoBottomNavBarWidget extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
                   onPressed: cartController.isAddedToCart(id: product.id)
-                      ? null
+                      ? () {
+                          cartController.deleteItem(id: product.id);
+                        }
                       : () {
                           cartController.addToCart(
                             product: CartModel(
@@ -54,7 +56,7 @@ class ProductInfoBottomNavBarWidget extends StatelessWidget {
                     child: Center(
                       child: Text(
                         cartController.cartItems.containsKey(product.id)
-                            ? 'Already Added'.toUpperCase()
+                            ? 'Remove From Cart ?'.toUpperCase()
                             : 'Add To cart'.toUpperCase(),
                       ),
                     ),
