@@ -8,6 +8,7 @@ import 'package:store_app/views/screens/home/home.dart';
 import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
 import 'package:store_app/views/screens/category/category_screen.dart';
 import 'package:store_app/views/screens/landing/landing.dart';
+import 'package:store_app/views/screens/login/login.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
 import 'package:store_app/views/screens/search/search.dart';
 import 'package:store_app/views/screens/user_information/user_info.dart';
@@ -87,11 +88,15 @@ class MyApp extends StatelessWidget {
           name: LandingScreen.routeName,
           page: () => const LandingScreen(),
         ),
+        GetPage(
+          name: LoginScreen.routeName,
+          page: () => const LoginScreen(),
+        ),
       ],
 
       title: 'Store',
       // initialRoute: '/',
-      home: const LandingScreen(),
+      home: const LoginScreen(),
     );
   }
 }

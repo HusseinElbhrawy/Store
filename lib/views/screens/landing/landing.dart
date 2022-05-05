@@ -3,7 +3,7 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/views/screens/landing/widgets/animated_bg_image.dart';
 import 'package:store_app/views/screens/landing/widgets/auth_button.dart';
-import 'package:store_app/views/screens/landing/widgets/custom_outlined_button.dart';
+import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 
 class LandingScreen extends StatelessWidget {
   static const routeName = '/landingScreen';
