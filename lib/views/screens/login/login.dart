@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/colors.dart';
-import 'package:store_app/views/screens/login/widgets/custom_text_form_filed.dart';
+import 'package:store_app/views/widgets/custom_text_form_filed.dart';
 import 'package:store_app/views/screens/login/widgets/logo.dart';
-import 'package:store_app/views/screens/login/widgets/wave_background.dart';
+import 'package:store_app/views/widgets/wave_background.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -142,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?\t"),
+                        const Text("Don't have an account?"),
                         TextButton(
                           onPressed: () {},
                           child: const Text(

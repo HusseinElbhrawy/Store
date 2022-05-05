@@ -9,8 +9,11 @@ import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
 import 'package:store_app/views/screens/category/category_screen.dart';
 import 'package:store_app/views/screens/landing/landing.dart';
 import 'package:store_app/views/screens/login/login.dart';
+import 'package:store_app/views/screens/main_screen.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
 import 'package:store_app/views/screens/search/search.dart';
+import 'package:store_app/views/screens/signup/signup.dart';
+import 'package:store_app/views/screens/upload_product/upload_product.dart';
 import 'package:store_app/views/screens/user_information/user_info.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
 import 'package:store_app/views/widgets/bottom_bar.dart';
@@ -92,11 +95,23 @@ class MyApp extends StatelessWidget {
           name: LoginScreen.routeName,
           page: () => const LoginScreen(),
         ),
+        GetPage(
+          name: SignUpScreen.routeName,
+          page: () => const SignUpScreen(),
+        ),
+        GetPage(
+          name: UploadProductScreen.routeName,
+          page: () => const UploadProductScreen(),
+        ),
+        GetPage(
+          name: MainScreen.routeName,
+          page: () => const MainScreen(),
+        ),
       ],
 
       title: 'Store',
       // initialRoute: '/',
-      home: const LoginScreen(),
+      home: const MainScreen(),
     );
   }
 }
