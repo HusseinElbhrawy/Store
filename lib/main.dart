@@ -7,11 +7,11 @@ import 'package:store_app/views/screens/feeds/feeds.dart';
 import 'package:store_app/views/screens/home/home.dart';
 import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
 import 'package:store_app/views/screens/category/category_screen.dart';
+import 'package:store_app/views/screens/landing/landing.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
 import 'package:store_app/views/screens/search/search.dart';
 import 'package:store_app/views/screens/user_information/user_info.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
-import 'package:store_app/views/test.dart';
 import 'package:store_app/views/widgets/bottom_bar.dart';
 
 void main() async {
@@ -83,11 +83,15 @@ class MyApp extends StatelessWidget {
           name: CategoryScreen.routeName,
           page: () => const CategoryScreen(),
         ),
+        GetPage(
+          name: LandingScreen.routeName,
+          page: () => const LandingScreen(),
+        ),
       ],
 
       title: 'Store',
-      // initialRoute: '/',
-      home: const SearchScreen(),
+      initialRoute: '/',
+      // home: const LandingScreen(),
     );
   }
 }

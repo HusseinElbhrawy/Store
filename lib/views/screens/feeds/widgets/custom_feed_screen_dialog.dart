@@ -31,12 +31,16 @@ class CustomFeedScreenDialog extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
+              // color: Colors.transparent,
             ),
-            child: Image.network(productModel.imageUrl),
+            child: Image.network(
+              productModel.imageUrl,
+            ),
           ),
           Container(
             padding: const EdgeInsets.all(8),
             color: Theme.of(context).scaffoldBackgroundColor,
+            // color: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

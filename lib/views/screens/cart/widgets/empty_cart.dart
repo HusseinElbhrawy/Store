@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/views/widgets/custom_elevated_button.dart';
 
 class EmptyCart extends StatelessWidget {
   const EmptyCart({
@@ -36,30 +37,7 @@ class EmptyCart extends StatelessWidget {
                   ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(25),
-            child: ElevatedButton(
-              onPressed: null,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.red),
-                padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(vertical: 14)),
-                minimumSize:
-                    MaterialStateProperty.all(const Size(double.infinity, 25)),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                ),
-              ),
-              child: Text(
-                'Shop now'.toUpperCase(),
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                      color: Colors.white,
-                    ),
-              ),
-            ),
-          ),
+          const CustomElevatedButton(),
         ],
       ),
     );
