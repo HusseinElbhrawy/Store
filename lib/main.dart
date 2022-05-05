@@ -90,8 +90,8 @@ class MyApp extends StatelessWidget {
       ],
 
       title: 'Store',
-      initialRoute: '/',
-      // home: const LandingScreen(),
+      // initialRoute: '/',
+      home: const LandingScreen(),
     );
   }
 }
