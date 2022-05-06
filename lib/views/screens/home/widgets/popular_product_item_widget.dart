@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/icons.dart';
@@ -6,6 +7,7 @@ import 'package:store_app/controller/wish_controller.dart';
 import 'package:store_app/model/cart.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
+import 'package:store_app/views/widgets/custom_cached_network_image.dart';
 
 class PopularProductsItemWidget extends StatelessWidget {
   const PopularProductsItemWidget({
@@ -35,10 +37,12 @@ class PopularProductsItemWidget extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Image.network(
-              product.imageUrl,
+            CachedNetworkImage(
+              imageUrl: product.imageUrl,
               height: 150,
               width: double.infinity,
+              progressIndicatorBuilder: cachedNetworkImageLoadingWidget,
+              errorWidget: cachedNetworkImageErrorWidget,
             ),
             PositionedDirectional(
               top: 155,

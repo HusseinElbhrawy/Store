@@ -10,23 +10,19 @@ class AnimatedBackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: LandingScreenController(),
-      builder: (LandingScreenController controller) {
-        return AnimatedBuilder(
-          animation: controller.animationController,
-          builder: (BuildContext context, Widget? child) {
-            return CachedNetworkImage(
-              imageUrl: controller.images.first,
-              errorWidget: (context, url, error) {
-                return const Icon(Icons.error);
-              },
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
-              alignment: FractionalOffset(controller.animation.value, 0),
-            );
+    final LandingScreenController controller = Get.find();
+    return AnimatedBuilder(
+      animation: controller.animationController,
+      builder: (BuildContext context, Widget? child) {
+        return CachedNetworkImage(
+          imageUrl: controller.images.first,
+          errorWidget: (context, url, error) {
+            return const Icon(Icons.error);
           },
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+          alignment: FractionalOffset(controller.animation.value, 0),
         );
       },
     );

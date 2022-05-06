@@ -1,5 +1,9 @@
-import 'package:flutter/animation.dart';
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:showcaseview/showcaseview.dart';
+import 'package:store_app/utils/middleware/theme/theme.dart';
 
 class LandingScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -17,6 +21,31 @@ class LandingScreenController extends GetxController
   AnimationController get animationController => _animationController;
 
   Animation get animation => _animation;
+
+  static final ThemeMiddleWare _themeMiddleware = ThemeMiddleWare();
+  bool firstTime =
+      _themeMiddleware.getThemeStatus(key: 'isFirstTimelandingScreen') ?? true;
+  void initShowCase({required context}) {
+    if (firstTime) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) =>
+          ShowCaseWidget.of(context)!.startShowCase(ids.values.toList()));
+    } else {
+      return;
+    }
+  }
+
+  Map<String, GlobalKey<State<StatefulWidget>>> ids = {
+    'landingLogin': GlobalKey(debugLabel: 'landingLogin'),
+    'landingSignup': GlobalKey(debugLabel: 'landingSignup'),
+    'landingorConnectWith': GlobalKey(debugLabel: 'landingorConnectWith'),
+  };
+  void onFinish() {
+    firstTime = false;
+    log(firstTime.toString());
+    _themeMiddleware.setValue(
+        status: firstTime, key: 'isFirstTimelandingScreen');
+    update();
+  }
 
   @override
   void onInit() {

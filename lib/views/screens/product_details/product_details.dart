@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/cart_controller.dart';
@@ -36,7 +37,9 @@ class ProductDetailsScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
-                image: NetworkImage(product.imageUrl.toString()),
+                image: CachedNetworkImageProvider(
+                  product.imageUrl.toString(),
+                ),
               ),
             ),
             width: double.infinity,

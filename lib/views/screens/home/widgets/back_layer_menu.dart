@@ -4,6 +4,7 @@ import 'package:store_app/constants/colors.dart';
 import 'package:store_app/constants/icons.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
 import 'package:store_app/views/screens/feeds/feeds.dart';
+import 'package:store_app/views/screens/upload_product/upload_product.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
 
 class BackLayerMenu extends StatelessWidget {
@@ -161,7 +162,7 @@ class BackLayerMenu extends StatelessWidget {
                         primary: Colors.black,
                       ),
                       onPressed: () {
-                        Get.toNamed(CartScreen.routeName);
+                        Get.toNamed(UploadProductScreen.routeName);
                       },
                       icon: const Icon(Icons.rss_feed_rounded),
                       label: const Text('Upload a new Product'),

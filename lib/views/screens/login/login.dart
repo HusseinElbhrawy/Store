@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/colors.dart';
+import 'package:store_app/views/screens/signup/signup.dart';
 import 'package:store_app/views/widgets/custom_text_form_filed.dart';
 import 'package:store_app/views/screens/login/widgets/logo.dart';
 import 'package:store_app/views/widgets/wave_background.dart';
@@ -144,7 +145,9 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         const Text("Don't have an account?"),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offNamed(SignUpScreen.routeName);
+                          },
                           child: const Text(
                             'SignUp',
                           ),

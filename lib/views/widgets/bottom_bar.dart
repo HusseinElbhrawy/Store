@@ -5,18 +5,14 @@ import 'package:store_app/controller/bottom_nav_controller.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
-  static String routeName = '/';
+  static String routeName = '/layout';
   @override
   Widget build(BuildContext context) {
     Get.put(BottomNavBarcontroller());
+
     return GetBuilder(
       builder: (BottomNavBarcontroller controller) {
         return Scaffold(
-          // appBar: AppBar(
-          //   centerTitle: true,
-          //   title: Text(
-          //       controller.screens[controller.currentIndex]['appBarTitle']),
-          // ),
           floatingActionButton: Padding(
             padding: const EdgeInsets.all(0.0),
             child: FloatingActionButton(

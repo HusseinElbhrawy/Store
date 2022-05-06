@@ -14,9 +14,11 @@ class Wishlist extends StatelessWidget {
       body: GetBuilder(
         autoRemove: false,
         init: WishController(),
-        builder: (WishController controller) => controller.wishList.isEmpty
-            ? const EmptyWishlist()
-            : const FullWishlist(),
+        builder: (WishController controller) {
+          return controller.wishList.isEmpty
+              ? const EmptyWishlist()
+              : const FullWishlist();
+        },
       ),
     );
   }

@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
+import 'package:store_app/views/widgets/custom_cached_network_image.dart';
 
 class BrandInnerScreenItemWidget extends StatelessWidget {
   const BrandInnerScreenItemWidget({
@@ -13,7 +15,10 @@ class BrandInnerScreenItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(ProductDetailsScreen.routeName, arguments: productModel);
+        Get.toNamed(
+          ProductDetailsScreen.routeName,
+          arguments: productModel,
+        );
       },
       child: Container(
         // color: Colors.red,
@@ -28,25 +33,24 @@ class BrandInnerScreenItemWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                  // color: Theme.of(context).backgroundColor,
+                decoration: const BoxDecoration(
                   color: Colors.white,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      productModel.imageUrl,
-                    ),
-                  ),
-                  //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PdHtXka2-bDDww6Nuect3Mt9IwpE4v4HNw&usqp=CAU
-                  borderRadius: const BorderRadius.all(
+                  borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   ),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
                       offset: Offset(2.0, 2.0),
                       blurRadius: 2.0,
-                    )
+                    ),
                   ],
+                ),
+                child: CachedNetworkImage(
+                  height: double.infinity,
+                  progressIndicatorBuilder: cachedNetworkImageLoadingWidget,
+                  errorWidget: cachedNetworkImageErrorWidget,
+                  imageUrl: productModel.imageUrl,
                 ),
               ),
             ),

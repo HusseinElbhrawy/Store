@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/feeds/widgets/custom_feed_screen_dialog.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
+import 'package:store_app/views/widgets/custom_cached_network_image.dart';
 
 class FeedScreenItem extends StatelessWidget {
   const FeedScreenItem({
@@ -19,6 +21,7 @@ class FeedScreenItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         log(Get.previousRoute);
+
         comeFromFeed == true
             ? Get.toNamed(
                 ProductDetailsScreen.routeName,
@@ -30,8 +33,9 @@ class FeedScreenItem extends StatelessWidget {
             : Get.offNamed(
                 ProductDetailsScreen.routeName,
                 arguments: product,
+                preventDuplicates: false,
                 parameters: {
-                  'commingFromFeeds': 'true',
+                  'commingFromFeeds': 'false',
                 },
               );
       },
@@ -58,8 +62,11 @@ class FeedScreenItem extends StatelessWidget {
                         'assets/images/CatLaptops.png',
                         fit: BoxFit.fill,
                       )
-                    : Image.network(
-                        product!.imageUrl,
+                    : CachedNetworkImage(
+                        progressIndicatorBuilder:
+                            cachedNetworkImageLoadingWidget,
+                        errorWidget: cachedNetworkImageErrorWidget,
+                        imageUrl: product!.imageUrl,
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.width / 2.5,
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/colors.dart';
+import 'package:store_app/views/screens/login/login.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 import 'package:store_app/views/widgets/custom_text_form_filed.dart';
 import 'package:store_app/views/widgets/dialog_item_widget.dart';
@@ -195,7 +196,9 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       const Text("Do you have an account?"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.offNamed(LoginScreen.routeName);
+                        },
                         child: const Text(
                           'Login',
                         ),

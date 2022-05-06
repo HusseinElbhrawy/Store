@@ -21,12 +21,13 @@ class InfoScreenController extends GetxController {
   ///For DarkListTile(Dark Mode)
   static final ThemeMiddleWare _themeMiddleware = ThemeMiddleWare();
 
-  bool _isDarkMode = _themeMiddleware.getThemeStatus() ?? false;
+  bool _isDarkMode =
+      _themeMiddleware.getThemeStatus(key: 'isDarkTheme') ?? false;
   bool get isDarkMode => _isDarkMode;
   void changeTheme({required bool newValue}) {
     _isDarkMode = newValue;
     log(_isDarkMode.toString());
-    _themeMiddleware.setValue(status: _isDarkMode);
+    _themeMiddleware.setValue(key: 'isDarkTheme', status: _isDarkMode);
     update();
   }
 
