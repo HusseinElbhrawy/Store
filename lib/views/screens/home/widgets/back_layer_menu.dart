@@ -5,7 +5,6 @@ import 'package:store_app/constants/icons.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
 import 'package:store_app/views/screens/feeds/feeds.dart';
 import 'package:store_app/views/screens/wishlist/wishlist.dart';
-import 'package:store_app/views/screens/home/widgets/back_layer_menu_item_widget.dart';
 
 class BackLayerMenu extends StatelessWidget {
   const BackLayerMenu({Key? key}) : super(key: key);
@@ -90,17 +89,17 @@ class BackLayerMenu extends StatelessWidget {
           ),
         ),
         SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Container(
-            margin: const EdgeInsets.all(50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            margin: const EdgeInsets.all(16),
+            child: Row(
               children: [
-                Center(
+                Align(
+                  alignment: AlignmentDirectional.topStart,
                   child: Container(
                     padding: const EdgeInsets.all(8.0),
-                    height: 100,
-                    width: 100,
+                    height: 90,
+                    width: 90,
                     decoration: BoxDecoration(
                       color: Theme.of(context).backgroundColor,
                       borderRadius: BorderRadius.circular(10.0),
@@ -119,31 +118,55 @@ class BackLayerMenu extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                BackLayerMenuItemWidget(
-                  iconData: MyIcons.rss,
-                  title: 'Feeds',
-                  onTap: () {
-                    Get.toNamed(FeedsScreen.routeName);
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        Get.toNamed(FeedsScreen.routeName);
+                      },
+                      icon: const Icon(MyIcons.rss),
+                      label: const Text('Feeds'),
+                    ),
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        Get.toNamed(CartScreen.routeName);
+                      },
+                      icon: const Icon(Icons.rss_feed_rounded),
+                      label: const Text('Cart'),
+                    ),
+                  ],
                 ),
-                BackLayerMenuItemWidget(
-                  iconData: Icons.rss_feed_rounded,
-                  title: 'Cart',
-                  onTap: () {
-                    Get.toNamed(CartScreen.routeName);
-                  },
-                ),
-                BackLayerMenuItemWidget(
-                  iconData: Icons.rss_feed_rounded,
-                  title: 'Wishlist',
-                  onTap: () {
-                    Get.toNamed(Wishlist.routeName);
-                  },
-                ),
-                BackLayerMenuItemWidget(
-                  iconData: Icons.rss_feed_rounded,
-                  title: 'Upload a new Product',
-                  onTap: () {},
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        Get.toNamed(Wishlist.routeName);
+                      },
+                      icon: const Icon(MyIcons.rss),
+                      label: const Text('Wishlist'),
+                    ),
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        Get.toNamed(CartScreen.routeName);
+                      },
+                      icon: const Icon(Icons.rss_feed_rounded),
+                      label: const Text('Upload a new Product'),
+                    ),
+                  ],
                 ),
               ],
             ),

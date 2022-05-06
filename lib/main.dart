@@ -110,8 +110,8 @@ class MyApp extends StatelessWidget {
       ],
 
       title: 'Store',
-      // initialRoute: '/',
-      home: const MainScreen(),
+      initialRoute: '/',
+      // home: const HomeScreen(),
     );
   }
 }

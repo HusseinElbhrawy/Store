@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      headerHeight: MediaQuery.of(context).size.height / 3,
+      headerHeight: MediaQuery.of(context).size.height / 1.5,
       backLayerBackgroundColor: ConstColors.starterColor,
       backLayer: const BackLayerMenu(),
       frontLayer: const SingleChildScrollView(
