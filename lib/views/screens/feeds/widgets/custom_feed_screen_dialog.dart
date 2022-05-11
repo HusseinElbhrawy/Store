@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/icons.dart';
@@ -7,6 +8,7 @@ import 'package:store_app/model/cart.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/feeds/widgets/quick_view_custom_icon_button.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
+import 'package:store_app/views/widgets/custom_cached_network_image.dart';
 
 class CustomFeedScreenDialog extends StatelessWidget {
   const CustomFeedScreenDialog({
@@ -29,18 +31,17 @@ class CustomFeedScreenDialog extends StatelessWidget {
                 minHeight: 100,
                 maxHeight: MediaQuery.of(context).size.height * 0.5),
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              // color: Colors.transparent,
-            ),
-            child: Image.network(
-              productModel.imageUrl,
+            decoration:
+                BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
+            child: CachedNetworkImage(
+              progressIndicatorBuilder: cachedNetworkImageLoadingWidget,
+              errorWidget: cachedNetworkImageErrorWidget,
+              imageUrl: productModel.imageUrl,
             ),
           ),
           Container(
             padding: const EdgeInsets.all(8),
             color: Theme.of(context).scaffoldBackgroundColor,
-            // color: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

@@ -21,8 +21,11 @@ class WaveBackground extends StatelessWidget {
             [ConstColors.gradiendFStart, ConstColors.gradiendFStart],
             [ConstColors.gradiendFEnd, ConstColors.gradiendFEnd],
           ],
-          durations: [19440, 10800],
-          heightPercentages: [0.22, 0.25],
+          durations: [
+            19440,
+            10800,
+          ],
+          heightPercentages: [0.22, 0.25, 0.28, 0.31],
           blur: const MaskFilter.blur(BlurStyle.solid, 0),
           gradientBegin: Alignment.bottomLeft,
           gradientEnd: Alignment.topRight,

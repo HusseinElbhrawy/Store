@@ -16,9 +16,13 @@ class AnimatedBackgroundImage extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return CachedNetworkImage(
           imageUrl: controller.images.first,
-          errorWidget: (context, url, error) {
-            return const Icon(Icons.error);
-          },
+          placeholder: (context, url) => Image.asset(
+            'assets/images/online shopping.jpg',
+            height: double.infinity,
+            width: double.infinity,
+            fit: BoxFit.fill,
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.cover,

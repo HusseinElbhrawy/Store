@@ -24,7 +24,6 @@ class LandingScreen extends StatelessWidget {
       builder: (LandingScreenController landingScreenController) {
         return ShowCaseWidget(
           onFinish: () => landingScreenController.onFinish(),
-          onStart: (index, Key) {},
           builder: Builder(
             builder: (context) {
               landingScreenController.initShowCase(context: context);
