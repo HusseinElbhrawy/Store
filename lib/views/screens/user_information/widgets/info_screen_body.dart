@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:store_app/constants/icons.dart';
+import 'package:store_app/controller/auth/sign_out.dart';
 import 'package:store_app/controller/cart_controller.dart';
 import 'package:store_app/controller/info_screen_controller.dart';
 import 'package:store_app/controller/wish_controller.dart';
@@ -18,6 +19,7 @@ class InfoScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final InfoScreenController infoScreenController = Get.find();
+    final SignOutController signOutController = Get.put(SignOutController());
     return SliverPadding(
       padding: const EdgeInsets.all(8),
       sliver: SliverToBoxAdapter(
@@ -145,7 +147,9 @@ class InfoScreenBody extends StatelessWidget {
               leading: const Icon(Icons.exit_to_app_rounded),
               subTitle: '',
               title: 'Sign Out',
-              onTap: () {},
+              onTap: () {
+                signOutController.signOut();
+              },
             ),
           ],
         ),

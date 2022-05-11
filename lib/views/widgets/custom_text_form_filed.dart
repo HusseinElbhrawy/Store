@@ -8,15 +8,31 @@ class CustomTextFormFiled extends StatelessWidget {
     required this.iconData,
     required this.validator,
     this.suffixIcon,
+    this.textEditingController,
+    this.focusNode,
+    this.onSubmit,
+    this.textInputAction,
+    this.isPassword,
   }) : super(key: key);
   final String hint;
+  final bool? isPassword;
   final IconData iconData;
   final Function(String? newChange) validator;
   final Widget? suffixIcon;
+  final TextEditingController? textEditingController;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onSubmit;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
+      textInputAction: textInputAction,
+      controller: textEditingController,
       validator: (newvalue) => validator(newvalue),
+      onFieldSubmitted: onSubmit,
+      obscureText: isPassword ?? false,
       decoration: InputDecoration(
         hintText: hint,
         prefixIcon: Icon(

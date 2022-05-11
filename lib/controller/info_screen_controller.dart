@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app/utils/middleware/theme/theme.dart';
+import 'package:store_app/utils/middleware/get_storage_middle_ware.dart';
 
 class InfoScreenController extends GetxController {
   // static final List<IconData> _userTileIcons = [
@@ -19,10 +19,9 @@ class InfoScreenController extends GetxController {
   double top = 0.0;
 
   ///For DarkListTile(Dark Mode)
-  static final ThemeMiddleWare _themeMiddleware = ThemeMiddleWare();
+  static final GetStorageMiddleWare _themeMiddleware = GetStorageMiddleWare();
 
-  bool _isDarkMode =
-      _themeMiddleware.getThemeStatus(key: 'isDarkTheme') ?? false;
+  bool _isDarkMode = _themeMiddleware.getValue(key: 'isDarkTheme') ?? false;
   bool get isDarkMode => _isDarkMode;
   void changeTheme({required bool newValue}) {
     _isDarkMode = newValue;

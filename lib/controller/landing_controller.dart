@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:store_app/utils/middleware/theme/theme.dart';
+import 'package:store_app/utils/middleware/get_storage_middle_ware.dart';
 
 class LandingScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -22,9 +22,9 @@ class LandingScreenController extends GetxController
 
   Animation get animation => _animation;
 
-  static final ThemeMiddleWare _themeMiddleware = ThemeMiddleWare();
+  static final GetStorageMiddleWare _themeMiddleware = GetStorageMiddleWare();
   bool firstTime =
-      _themeMiddleware.getThemeStatus(key: 'isFirstTimelandingScreen') ?? true;
+      _themeMiddleware.getValue(key: 'isFirstTimelandingScreen') ?? true;
   void initShowCase({required context}) {
     if (firstTime) {
       WidgetsBinding.instance!.addPostFrameCallback((_) =>

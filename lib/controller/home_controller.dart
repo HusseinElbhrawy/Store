@@ -3,12 +3,11 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:store_app/utils/middleware/theme/theme.dart';
+import 'package:store_app/utils/middleware/get_storage_middle_ware.dart';
 
 class HomeController extends GetxController {
-  static final ThemeMiddleWare _themeMiddleware = ThemeMiddleWare();
-  bool firstTime =
-      _themeMiddleware.getThemeStatus(key: 'isFirstTimeHomeScreen') ?? true;
+  static final GetStorageMiddleWare _middleware = GetStorageMiddleWare();
+  bool firstTime = _middleware.getValue(key: 'isFirstTimeHomeScreen') ?? true;
   void initShowCase({required context}) {
     if (firstTime) {
       WidgetsBinding.instance!.addPostFrameCallback((_) =>
@@ -25,7 +24,7 @@ class HomeController extends GetxController {
 
   void onFinish() {
     firstTime = false;
-    _themeMiddleware.setValue(status: firstTime, key: 'isFirstTimeHomeScreen');
+    _middleware.setValue(status: firstTime, key: 'isFirstTimeHomeScreen');
     log(firstTime.toString());
     update();
   }

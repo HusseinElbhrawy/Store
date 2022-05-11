@@ -93,9 +93,8 @@ class LandingScreen extends StatelessWidget {
                                               .ids['landingLogin']!,
                                           child: AuthButton(
                                             onTap: () {
-                                              Get.toNamed(
+                                              Get.offAllNamed(
                                                   LoginScreen.routeName);
-                                              // Get.offAllNamed(LoginScreen.routeName);
                                             },
                                             title: 'Login',
                                             bgColor:
@@ -121,9 +120,8 @@ class LandingScreen extends StatelessWidget {
                                               .ids['landingSignup']!,
                                           child: AuthButton(
                                             onTap: () {
-                                              Get.toNamed(
+                                              Get.offAllNamed(
                                                   SignUpScreen.routeName);
-                                              // Get.offAllNamed(SignUpScreen.routeName);
                                             },
                                             title: 'Signup',
                                             bgColor: Colors.grey.shade100,

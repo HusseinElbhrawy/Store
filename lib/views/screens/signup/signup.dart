@@ -7,6 +7,7 @@ import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 import 'package:store_app/views/widgets/custom_text_form_filed.dart';
 import 'package:store_app/views/widgets/dialog_item_widget.dart';
 import 'package:store_app/views/widgets/wave_background.dart';
+import 'package:store_app/controller/auth/sign_up.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final SignupController controller = Get.put(SignupController());
     return Scaffold(
       body: Stack(
         children: [
@@ -132,7 +134,12 @@ class SignUpScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.registerWithEmailAndPassword(
+                          emailAddress: 'test1@gmail.com',
+                          password: '1234567',
+                        );
+                      },
                       child: const Text('Sign up'),
                     ),
                   ),
