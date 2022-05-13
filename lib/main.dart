@@ -113,7 +113,8 @@ class MyApp extends StatelessWidget {
 
       title: 'Store',
       // initialRoute: UserStatus.page,
-      home: const LoginScreen(),
+      home: const SignUpScreen(),
     );
   }
 }
+//    const HomeScreen(key: PageStorageKey('homeScreen')),

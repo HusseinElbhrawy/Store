@@ -81,16 +81,19 @@ class UploadProductScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             DialogItemWidget(
+                              onTap: () {},
                               icon: Icons.camera,
                               title: 'Camera',
                               color: ConstColors.starterColor,
                             ),
                             DialogItemWidget(
+                              onTap: () {},
                               icon: Icons.photo_library_outlined,
                               title: 'Gallery',
                               color: ConstColors.starterColor,
                             ),
-                            const DialogItemWidget(
+                            DialogItemWidget(
+                              onTap: () {},
                               icon: Icons.clear,
                               title: 'Remove',
                               color: Colors.red,

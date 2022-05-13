@@ -5,9 +5,8 @@ import 'package:store_app/constants/colors.dart';
 import 'package:store_app/views/screens/login/login.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 import 'package:store_app/views/widgets/custom_text_form_filed.dart';
-import 'package:store_app/views/widgets/dialog_item_widget.dart';
 import 'package:store_app/views/widgets/wave_background.dart';
-import 'package:store_app/controller/auth/sign_up.dart';
+import 'package:store_app/controller/auth/register.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -30,17 +29,24 @@ class SignUpScreen extends StatelessWidget {
                   Stack(
                     alignment: AlignmentDirectional.bottomEnd,
                     children: [
-                      CircleAvatar(
-                        radius: 75,
-                        backgroundColor: Colors.transparent,
-                        child: CircleAvatar(
-                          backgroundColor: ConstColors.starterColor,
-                          radius: 70,
-                          child: CircleAvatar(
-                            backgroundColor: ConstColors.endColor,
-                            radius: 65,
-                          ),
-                        ),
+                      GetBuilder(
+                        builder: (SignupController controller) {
+                          return CircleAvatar(
+                            radius: 75,
+                            backgroundColor: Colors.transparent,
+                            child: CircleAvatar(
+                              backgroundColor: ConstColors.starterColor,
+                              radius: 70,
+                              child: CircleAvatar(
+                                backgroundColor: ConstColors.endColor,
+                                radius: 65,
+                                backgroundImage: controller.imageFile != null
+                                    ? FileImage(controller.imageFile!)
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -49,36 +55,7 @@ class SignUpScreen extends StatelessWidget {
                           primary: ConstColors.starterColor,
                         ),
                         onPressed: () {
-                          Get.dialog(
-                            AlertDialog(
-                              title: Text(
-                                'Choose Option',
-                                style: TextStyle(
-                                  color: ConstColors.starterColor,
-                                ),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  DialogItemWidget(
-                                    icon: Icons.camera,
-                                    title: 'Camera',
-                                    color: ConstColors.starterColor,
-                                  ),
-                                  DialogItemWidget(
-                                    icon: Icons.photo_library_outlined,
-                                    title: 'Gallery',
-                                    color: ConstColors.starterColor,
-                                  ),
-                                  const DialogItemWidget(
-                                    icon: Icons.clear,
-                                    title: 'Remove',
-                                    color: Colors.red,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                          controller.chooseImage();
                         },
                         child: const Icon(
                           Icons.add_a_photo,
@@ -134,12 +111,7 @@ class SignUpScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      onPressed: () {
-                        controller.registerWithEmailAndPassword(
-                          emailAddress: 'test1@gmail.com',
-                          password: '1234567',
-                        );
-                      },
+                      onPressed: () {},
                       child: const Text('Sign up'),
                     ),
                   ),
