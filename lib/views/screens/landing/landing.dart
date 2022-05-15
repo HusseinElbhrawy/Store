@@ -6,7 +6,6 @@ import 'package:store_app/controller/landing_controller.dart';
 import 'package:store_app/views/screens/landing/widgets/animated_bg_image.dart';
 import 'package:store_app/views/screens/landing/widgets/auth_button.dart';
 import 'package:store_app/views/screens/login/login.dart';
-import 'package:store_app/views/screens/main_screen.dart';
 import 'package:store_app/views/screens/signup/signup.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
 
@@ -23,6 +22,7 @@ class LandingScreen extends StatelessWidget {
       init: LandingScreenController(),
       builder: (LandingScreenController landingScreenController) {
         return ShowCaseWidget(
+          autoPlay: true,
           onFinish: () => landingScreenController.onFinish(),
           builder: Builder(
             builder: (context) {
@@ -177,7 +177,10 @@ class LandingScreen extends StatelessWidget {
                                                 borderColor: Colors.deepOrange,
                                                 iconData:
                                                     FontAwesome5.google_plus_g,
-                                                onTap: () {},
+                                                onTap: () {
+                                                  landingScreenController
+                                                      .signInWithGoogle();
+                                                },
                                                 title: 'Google',
                                                 fontColor: Colors.deepOrange,
                                               ),
@@ -203,7 +206,8 @@ class LandingScreen extends StatelessWidget {
                                         fontColor: Colors.white,
                                         backgroundColor: Colors.deepOrange,
                                         onTap: () {
-                                          Get.offNamed(MainScreen.routeName);
+                                          landingScreenController
+                                              .signInAsAGuest();
                                         },
                                         title: 'Continous as a guest',
                                       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:get/get.dart';
+import 'package:store_app/utils/style/colors.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 import 'package:store_app/views/widgets/cartlist_icon_button_with_badge.dart';
 import 'package:store_app/views/widgets/wishlist_icon_button_with_bage.dart';
 
@@ -33,6 +35,7 @@ class HeaderSearchWidget extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     var percent = shrinkOffset / (maxExtent - minExtent);
     double calculate = 1 - percent < 0 ? 0 : (1 - percent);
+    final InfoScreenController infoScreenController = Get.find();
     return SizedBox(
       height: maxExtent,
       child: Stack(
@@ -79,9 +82,11 @@ class HeaderSearchWidget extends SliverPersistentHeaderDelegate {
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         image: NetworkImage(
-                          'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+                          infoScreenController.isLoading
+                              ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                              : infoScreenController.imageUrl,
                         ),
                         fit: BoxFit.cover,
                       )),

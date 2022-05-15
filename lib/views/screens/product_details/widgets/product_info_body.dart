@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
-import 'package:store_app/constants/constant.dart';
+import 'package:get/get.dart';
+import 'package:store_app/utils/style/colors.dart';
+import 'package:store_app/controller/home_controller.dart';
 import 'package:store_app/model/product_moel.dart';
 import 'package:store_app/views/screens/product_details/widgets/details_item_widget.dart';
 import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
@@ -13,7 +14,9 @@ class ProductInfoBody extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> suggestedList = kProducts.where((element) {
+    final HomeController homeController = Get.find();
+    List<ProductModel> suggestedList =
+        homeController.kProducts.where((element) {
       return element.productCategoryName
           .toLowerCase()
           .contains(product.productCategoryName.toLowerCase());

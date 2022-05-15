@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/constants/icons.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
 import 'package:store_app/views/screens/feeds/feeds.dart';
 import 'package:store_app/views/screens/upload_product/upload_product.dart';
@@ -12,6 +13,7 @@ class BackLayerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InfoScreenController infoScreenController = Get.find();
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -102,16 +104,19 @@ class BackLayerMenu extends StatelessWidget {
                     height: 90,
                     width: 90,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Container(
                       // clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0),
-                        image: const DecorationImage(
+                        image: DecorationImage(
                           image: NetworkImage(
-                              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
+                            infoScreenController.isLoading
+                                ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                : infoScreenController.imageUrl,
+                          ),
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -139,7 +144,7 @@ class BackLayerMenu extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(CartScreen.routeName);
                       },
-                      icon: const Icon(Icons.rss_feed_rounded),
+                      icon: const Icon(MyIcons.emptyShopCart),
                       label: const Text('Cart'),
                     ),
                   ],
@@ -154,7 +159,7 @@ class BackLayerMenu extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(Wishlist.routeName);
                       },
-                      icon: const Icon(MyIcons.rss),
+                      icon: const Icon(MyIcons.emptyHeart),
                       label: const Text('Wishlist'),
                     ),
                     TextButton.icon(
@@ -164,7 +169,7 @@ class BackLayerMenu extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(UploadProductScreen.routeName);
                       },
-                      icon: const Icon(Icons.rss_feed_rounded),
+                      icon: const Icon(MyIcons.upload),
                       label: const Text('Upload a new Product'),
                     ),
                   ],

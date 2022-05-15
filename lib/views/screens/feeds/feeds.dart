@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/constant.dart';
+import 'package:store_app/controller/home_controller.dart';
 import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
 import 'package:store_app/views/widgets/cartlist_icon_button_with_badge.dart';
 import 'package:store_app/views/widgets/wishlist_icon_button_with_bage.dart';
@@ -14,7 +14,7 @@ class FeedsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewAll = Get.arguments;
-
+    final HomeController homeController = Get.find();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -37,7 +37,12 @@ class FeedsScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           children: [
             ...List.generate(
-              viewAll != null ? kPopularProducts.length : kProducts.length,
+              viewAll != null
+                  ? homeController.kProducts
+                      .where((element) => element.isPopular)
+                      .toList()
+                      .length
+                  : homeController.kProducts.length,
               (index) {
                 return StaggeredGridTile.count(
                   crossAxisCellCount: 2,
@@ -51,8 +56,10 @@ class FeedsScreen extends StatelessWidget {
                               : 3,
                   child: FeedScreenItem(
                     product: viewAll != null
-                        ? kPopularProducts[index]
-                        : kProducts[index],
+                        ? homeController.kProducts
+                            .where((element) => element.isPopular)
+                            .toList()[index]
+                        : homeController.kProducts[index],
                     comeFromFeed: true,
                   ),
                 );

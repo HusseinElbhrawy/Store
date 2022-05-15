@@ -18,6 +18,7 @@ class MyIcons {
   static const IconData eye = Icons.remove_red_eye;
   static const IconData close = Icons.close;
   static const IconData menu = Icons.menu;
+  static const IconData upload = Icons.cloud_upload_outlined;
   // static final user = Icons.user ;
   // static final IconData bag = ;
   // static final Icon wishlish = Icons;

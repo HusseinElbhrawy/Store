@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:store_app/utils/middleware/get_storage_middle_ware.dart';
+import 'package:store_app/model/register_model.dart';
+import 'package:store_app/utils/middleware/storage/get_storage_middle_ware.dart';
 import 'package:store_app/views/screens/main_screen.dart';
 import 'package:store_app/views/widgets/snackbar/error_snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -67,6 +69,8 @@ class LoginController extends GetxController {
           password: passwordConroller.text.trim(),
         );
         _middleWare.setValue(status: true, key: 'isLogin');
+        emailController.clear();
+        passwordConroller.clear();
         isLoading.value = false;
         Get.offAllNamed(MainScreen.routeName);
       } catch (e) {
@@ -75,6 +79,8 @@ class LoginController extends GetxController {
     }
   }
 
+  RegisterModel? registerModel;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future signInWithGoogle() async {
     isLoading.value = true;
     final googleSignIn = GoogleSignIn();
@@ -90,6 +96,19 @@ class LoginController extends GetxController {
               accessToken: googleAuth.accessToken,
             ),
           );
+          registerModel = RegisterModel(
+            joinnedDate: Timestamp.now(),
+            uID: authResult!.user!.uid.toString(),
+            fullName: authResult!.user!.displayName.toString(),
+            email: authResult!.user!.email.toString(),
+            phoneNumber: authResult!.user!.phoneNumber.toString(),
+            imageUrl: authResult!.user!.photoURL ??
+                'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+          );
+          await _firestore
+              .collection('Users')
+              .doc(authResult!.user!.uid)
+              .set(registerModel!.toMap());
           _middleWare.setValue(status: true, key: 'isLogin');
           isLoading.value = false;
           Get.offAllNamed(MainScreen.routeName);
@@ -106,15 +125,15 @@ class LoginController extends GetxController {
     return authResult;
   }
 
-  @override
-  void onClose() {
-    disposeAllControllers();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   disposeAllControllers();
+  //   super.onClose();
+  // }
 
-  @override
-  void dispose() {
-    disposeAllControllers();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   disposeAllControllers();
+  //   super.dispose();
+  // }
 }

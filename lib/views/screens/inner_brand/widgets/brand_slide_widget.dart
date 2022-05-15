@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/constant.dart';
 import 'package:store_app/controller/brand_inner_screen_controller.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 
 class BrandsSlideWidget extends StatelessWidget {
   const BrandsSlideWidget({
@@ -10,6 +11,8 @@ class BrandsSlideWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InfoScreenController infoScreenController = Get.find();
+
     return GetBuilder(
       init: BrandInnerScreenController(),
       builder: (BrandInnerScreenController controller) {
@@ -30,13 +33,15 @@ class BrandsSlideWidget extends StatelessWidget {
                             margin: const EdgeInsets.only(top: 16),
                             height: 50,
                             width: 50,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                               image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: NetworkImage(
-                                  'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+                                  infoScreenController.isLoading
+                                      ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                      : infoScreenController.imageUrl,
                                 ),
                               ),
                             ),

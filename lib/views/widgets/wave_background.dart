@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:store_app/utils/style/colors.dart';
 
 class WaveBackground extends StatelessWidget {
   const WaveBackground({
@@ -13,9 +11,15 @@ class WaveBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RotatedBox(
-      quarterTurns: 2,
-      child: WaveWidget(
+    return Container(
+      height: 500,
+      width: size.width,
+      color: ConstColors.gradiendFStart.withOpacity(.3),
+    );
+  }
+}
+/*
+WaveWidget(
         config: CustomConfig(
           gradients: [
             [ConstColors.gradiendFStart, ConstColors.gradiendFStart],
@@ -35,7 +39,5 @@ class WaveBackground extends StatelessWidget {
           size.width,
           size.height / 1.15,
         ),
-      ),
-    );
-  }
-}
+      )
+*/

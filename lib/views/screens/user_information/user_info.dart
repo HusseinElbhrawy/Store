@@ -23,7 +23,7 @@ class UserInfoScreen extends StatelessWidget {
               //AppBar
               FlexiableAppBar(),
               //Body
-              InfoScreenBody(),
+              InfoScreenBody()
             ],
           ),
           //Custom Floating Action Button

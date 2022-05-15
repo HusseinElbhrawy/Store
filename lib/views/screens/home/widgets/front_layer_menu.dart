@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/constant.dart';
+import 'package:store_app/controller/home_controller.dart';
 import 'package:store_app/views/screens/feeds/feeds.dart';
 import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
 import 'package:store_app/views/screens/category/category_screen.dart';
@@ -132,32 +133,39 @@ class FrontLayerMenu extends StatelessWidget {
               : null,
         ),
         TitleWithViewAllWidget(
-            title: 'Popular Products',
-            isPopularBrand: false,
-            onTap: () {
-              Get.toNamed(FeedsScreen.routeName, arguments: 'true');
-            }),
-        SizedBox(
-          height: 300,
-          child: ListView.builder(
-            itemCount: kPopularProducts.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              // return SizedBox(
-              //   //For Testing
-              //   child: InkWell(
-              //     child: const FeedScreenItem(),
-              //     onTap: () {
-              //       Get.toNamed(ProductDetailsScreen.routeName);
-              //     },
-              //   ),
-              //   width: 200,
-              // );
-              return PopularProductsItemWidget(
-                product: kPopularProducts[index],
-              );
-            },
-          ),
+          title: 'Popular Products',
+          isPopularBrand: false,
+          onTap: () {
+            Get.toNamed(FeedsScreen.routeName, arguments: 'true');
+          },
+        ),
+        GetX(
+          init: HomeController(),
+          builder: (HomeController controller) {
+            return SizedBox(
+              height: 300,
+              child: ListView.builder(
+                // itemCount: kPopularProducts.length,
+                itemCount: controller.isLoading.value
+                    ? 0
+                    : controller.kProducts
+                        .where((element) => element.isPopular)
+                        .toList()
+                        .length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return PopularProductsItemWidget(
+                    product: controller.isLoading.value
+                        ? kPopularProducts[index]
+                        : controller.kProducts
+                            .where((element) => element.isPopular)
+                            .toList()[index],
+                    // product: kPopularProducts[index],
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );

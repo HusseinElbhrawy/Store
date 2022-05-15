@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:store_app/utils/style/colors.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled({
@@ -13,6 +14,8 @@ class CustomTextFormFiled extends StatelessWidget {
     this.onSubmit,
     this.textInputAction,
     this.isPassword,
+    this.keyboard = TextInputType.text,
+    this.formatters,
   }) : super(key: key);
   final String hint;
   final bool? isPassword;
@@ -23,15 +26,20 @@ class CustomTextFormFiled extends StatelessWidget {
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmit;
-
+  final TextInputType? keyboard;
+  final List<TextInputFormatter>? formatters;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: formatters,
+      autocorrect: true,
+      enableSuggestions: true,
       focusNode: focusNode,
       textInputAction: textInputAction,
       controller: textEditingController,
       validator: (newvalue) => validator(newvalue),
       onFieldSubmitted: onSubmit,
+      keyboardType: keyboard,
       obscureText: isPassword ?? false,
       decoration: InputDecoration(
         hintText: hint,
@@ -42,6 +50,11 @@ class CustomTextFormFiled extends StatelessWidget {
         suffixIcon: suffixIcon,
         fillColor: Colors.white,
         filled: true,
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white,

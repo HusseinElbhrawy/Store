@@ -1,5 +1,7 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   CustomFloatingActionButton({
@@ -22,6 +24,7 @@ class CustomFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InfoScreenController infoScreenController = Get.find();
     if (scrollController.hasClients) {
       double offset = scrollController.offset;
       top -= offset;
@@ -46,7 +49,7 @@ class CustomFloatingActionButton extends StatelessWidget {
           backgroundColor: Colors.purple,
           heroTag: "btn1",
           onPressed: () {},
-          child: const Icon(Icons.camera_alt_outlined),
+          child: const Icon(Icons.edit),
         ),
       ),
     );

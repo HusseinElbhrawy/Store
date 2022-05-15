@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/controller/cart_controller.dart';
 import 'package:store_app/model/cart.dart';
 

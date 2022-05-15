@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:store_app/utils/style/colors.dart';
+import 'package:store_app/controller/upload_product_controller.dart';
 import 'package:store_app/views/widgets/dialog_item_widget.dart';
 
 class UploadProductScreen extends StatelessWidget {
@@ -22,8 +25,11 @@ class UploadProductScreen extends StatelessWidget {
     'Furniture',
     'Watches',
   ];
+
   @override
   Widget build(BuildContext context) {
+    final UploadProductCotroller uploadController =
+        Get.put(UploadProductCotroller());
     const borderSide = BorderSide(
       color: Colors.grey,
       width: 2,
@@ -63,16 +69,29 @@ class UploadProductScreen extends StatelessWidget {
                   const Divider(color: Colors.transparent),
                   Row(
                     children: [
-                      Expanded(
-                        child: Container(
-                          height: 200,
-                          // width: 200,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: borderSide,
-                              left: borderSide,
-                              right: borderSide,
-                              top: borderSide,
+                      GetBuilder(
+                        builder: (UploadProductCotroller controller) =>
+                            Expanded(
+                          child: Container(
+                            height: 200,
+                            // width: 200,
+                            decoration: BoxDecoration(
+                              border: const Border(
+                                bottom: borderSide,
+                                left: borderSide,
+                                right: borderSide,
+                                top: borderSide,
+                              ),
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: uploadController.pickeImageFile == null
+                                    ? const AssetImage(
+                                            'assets/images/white.jpg')
+                                        as ImageProvider
+                                    : FileImage(
+                                        uploadController.pickeImageFile!,
+                                      ),
+                              ),
                             ),
                           ),
                         ),
@@ -81,19 +100,29 @@ class UploadProductScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             DialogItemWidget(
-                              onTap: () {},
+                              onTap: () {
+                                uploadController.pickedImage(
+                                  src: ImageSource.camera,
+                                );
+                              },
                               icon: Icons.camera,
                               title: 'Camera',
                               color: ConstColors.starterColor,
                             ),
                             DialogItemWidget(
-                              onTap: () {},
+                              onTap: () {
+                                uploadController.pickedImage(
+                                  src: ImageSource.gallery,
+                                );
+                              },
                               icon: Icons.photo_library_outlined,
                               title: 'Gallery',
                               color: ConstColors.starterColor,
                             ),
                             DialogItemWidget(
-                              onTap: () {},
+                              onTap: () {
+                                uploadController.removeImage();
+                              },
                               icon: Icons.clear,
                               title: 'Remove',
                               color: Colors.red,
@@ -117,18 +146,13 @@ class UploadProductScreen extends StatelessWidget {
                       Expanded(
                         child: DropdownButtonFormField(
                           isExpanded: true,
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'String1',
-                              child: Text('Mobile1'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'String2',
-                              child: Text('Mobile2'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'String3',
-                              child: Text('Mobile3'),
+                          items: [
+                            ...List.generate(
+                              categories.length,
+                              (index) => DropdownMenuItem(
+                                child: Text(categories[index]),
+                                value: categories[index],
+                              ),
                             ),
                           ],
                           onChanged: (Object? value) {},
@@ -150,18 +174,13 @@ class UploadProductScreen extends StatelessWidget {
                       Expanded(
                         child: DropdownButtonFormField(
                           isExpanded: true,
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'String1',
-                              child: Text('Mobile1'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'String2',
-                              child: Text('Mobile2'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'String3',
-                              child: Text('Mobile3'),
+                          items: [
+                            ...List.generate(
+                              brands.length,
+                              (index) => DropdownMenuItem(
+                                child: Text(brands[index]),
+                                value: brands[index],
+                              ),
                             ),
                           ],
                           onChanged: (Object? value) {},
@@ -183,6 +202,13 @@ class UploadProductScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Divider(color: Colors.transparent),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      hintText: 'Quantity',
+                    ),
+                  )
                 ],
               ),
             ),

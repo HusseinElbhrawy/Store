@@ -103,30 +103,40 @@ class InfoScreenBody extends StatelessWidget {
             ),
             const CustomTitle(title: 'User Information'),
             const Divider(thickness: 2),
-            CustomUserListTile(
-              leading: const Icon(Icons.email),
-              subTitle: 'Empty',
-              title: 'Email',
-              onTap: () {},
-            ),
-            CustomUserListTile(
-              leading: const Icon(Icons.phone),
-              subTitle: 'Empty',
-              title: 'Phone Number',
-              onTap: () {},
-            ),
-            const CustomUserListTile(
-              leading: Icon(Icons.local_shipping),
-              subTitle: 'Empty',
-              title: 'Shipping Address',
-              onTap: null,
-              // onTap: () {},
-            ),
-            CustomUserListTile(
-              leading: const Icon(Icons.watch_later),
-              subTitle: 'Empty',
-              title: 'Joinned Date',
-              onTap: () {},
+            GetBuilder(
+              builder: (InfoScreenController controller) {
+                return Column(
+                  children: [
+                    CustomUserListTile(
+                      leading: const Icon(Icons.email),
+                      subTitle: controller.isLoading
+                          ? ''
+                          : infoScreenController.userEmail,
+                      title: 'Email',
+                    ),
+                    CustomUserListTile(
+                      leading: const Icon(Icons.phone),
+                      subTitle: controller.isLoading
+                          ? ''
+                          : infoScreenController.userPhoneNumber,
+                      title: 'Phone Number',
+                    ),
+                    const CustomUserListTile(
+                      leading: Icon(Icons.local_shipping),
+                      subTitle: 'Empty',
+                      title: 'Shipping Address',
+                      onTap: null,
+                    ),
+                    CustomUserListTile(
+                      leading: const Icon(Icons.watch_later),
+                      subTitle: controller.isLoading
+                          ? ''
+                          : '${infoScreenController.userJoinnedDate.year}-${infoScreenController.userJoinnedDate.month}-${infoScreenController.userJoinnedDate.day}',
+                      title: 'Joinned Date',
+                    ),
+                  ],
+                );
+              },
             ),
             const CustomTitle(title: 'User Settings'),
             const Divider(thickness: 2),

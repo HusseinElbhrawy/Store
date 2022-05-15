@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/controller/auth/login.dart';
+import 'package:store_app/views/screens/forget_password/forget_password.dart';
 import 'package:store_app/views/screens/signup/signup.dart';
 import 'package:store_app/views/widgets/custom_text_form_filed.dart';
 import 'package:store_app/views/screens/login/widgets/logo.dart';
-import 'package:store_app/views/widgets/wave_background.dart';
+import 'package:store_app/views/widgets/loading_widget.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:store_app/views/widgets/wave_background.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -39,11 +40,10 @@ class LoginScreen extends StatelessWidget {
                         textEditingController: loginController.emailController,
                         textInputAction: TextInputAction.next,
                         hint: 'Email Address',
+                        keyboard: TextInputType.emailAddress,
                         iconData: Icons.email,
                         validator: (newValue) {
-                          if (newValue!.isEmpty ||
-                              !newValue.contains('@') ||
-                              !newValue.contains('.')) {
+                          if (!GetUtils.isEmail(newValue!)) {
                             return 'this email is not valid';
                           }
                           return null;
@@ -64,6 +64,7 @@ class LoginScreen extends StatelessWidget {
                             },
                             textInputAction: TextInputAction.done,
                             hint: 'Password',
+                            keyboard: TextInputType.visiblePassword,
                             iconData: Icons.lock,
                             validator: (newValue) {
                               if (newValue!.isEmpty || newValue.length < 7) {
@@ -89,11 +90,24 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.blue.shade900,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(ForgetPasswordScreen.routeName);
+                        },
+                        child: const Text('Forget Password'),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.center,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          fixedSize: Size(size.width, 50),
                           primary: ConstColors.starterColor,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
                         onPressed: () {
@@ -181,18 +195,9 @@ class LoginScreen extends StatelessWidget {
             GetX(
               init: LoginController(),
               builder: (LoginController controller) {
-                return Visibility(
+                return LoadingWidget(
+                  size: size,
                   visible: controller.isLoading.value,
-                  child: Container(
-                    color: Colors.white.withOpacity(.5),
-                    width: size.width,
-                    height: size.height,
-                    child: const Center(
-                      child: SpinKitFadingCube(
-                        color: Color.fromARGB(255, 158, 158, 158),
-                      ),
-                    ),
-                  ),
                 );
               },
             ),

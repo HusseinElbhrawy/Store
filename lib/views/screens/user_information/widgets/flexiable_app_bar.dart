@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:get/get.dart';
+import 'package:store_app/utils/style/colors.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 
 class FlexiableAppBar extends StatelessWidget {
   const FlexiableAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final InfoScreenController infoScreenController = Get.find();
     double top;
     return SliverAppBar(
       expandedHeight: 200.0,
@@ -42,8 +46,8 @@ class FlexiableAppBar extends StatelessWidget {
                             Container(
                               height: kToolbarHeight / 1.8,
                               width: kToolbarHeight / 1.8,
-                              decoration: const BoxDecoration(
-                                boxShadow: [
+                              decoration: BoxDecoration(
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.white,
                                     blurRadius: 1.0,
@@ -53,27 +57,56 @@ class FlexiableAppBar extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image: NetworkImage(
-                                      'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
+                                    infoScreenController.isLoading
+                                        ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                        : infoScreenController.imageUrl
+                                            .toString(),
+                                  ),
                                 ),
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Text(
-                              'Guest',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white,
-                              ),
+                            GetBuilder(
+                              builder: (InfoScreenController controller) {
+                                return Text(
+                                  controller.isLoading
+                                      ? 'Guest'
+                                      : infoScreenController.userName,
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  background: const Image(
-                    image: NetworkImage(
-                        'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'),
-                    fit: BoxFit.fill,
+                  background: GetBuilder(
+                    builder: (InfoScreenController controller) {
+                      return CachedNetworkImage(
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                            ),
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return const Icon(
+                            Icons.error,
+                            color: Colors.blue,
+                          );
+                        },
+                        imageUrl: infoScreenController.isLoading
+                            ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                            : infoScreenController.imageUrl.toString(),
+                        fit: BoxFit.fill,
+                      );
+                    },
                   ),
                 );
               },
@@ -84,3 +117,10 @@ class FlexiableAppBar extends StatelessWidget {
     );
   }
 }
+/*
+Image(
+                        image: NetworkImage(controller.isLoading
+                            ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                            : infoScreenController.imageUrl.toString()),
+                        fit: BoxFit.fill,
+                      )*/

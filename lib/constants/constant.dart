@@ -1,5 +1,6 @@
 import 'package:store_app/model/product_moel.dart';
 
+/*
 final List<ProductModel> kProducts = [
   ProductModel(
       id: 'Samsung1',
@@ -521,17 +522,18 @@ final List<ProductModel> kProducts = [
       quantity: 951,
       isPopular: false),
   ProductModel(
-      id: 'YAMAY Smart Watch 2020 Ver',
-      title: 'YAMAY Smart Watch 2020 Ver',
-      description:
-          'YAMAY Smart Watch 2020 Ver. Watches for Men Women Fitness Tracker Blood Pressure Monitor Blood Oxygen Meter Heart Rate Monitor IP68 Waterproof, Smartwatch Compatible with iPhone Samsung Android Phones',
-      price: 183.99,
-      imageUrl:
-          'https://images-na.ssl-images-amazon.com/images/I/61gCtkVYb5L._AC_SL1000_.jpg',
-      brand: 'Apple',
-      productCategoryName: 'Watches',
-      quantity: 56,
-      isPopular: true),
+    id: 'YAMAY Smart Watch 2020 Ver',
+    title: 'YAMAY Smart Watch 2020 Ver',
+    description:
+        'YAMAY Smart Watch 2020 Ver. Watches for Men Women Fitness Tracker Blood Pressure Monitor Blood Oxygen Meter Heart Rate Monitor IP68 Waterproof, Smartwatch Compatible with iPhone Samsung Android Phones',
+    price: 183.99,
+    imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/61gCtkVYb5L._AC_SL1000_.jpg',
+    brand: 'Apple',
+    productCategoryName: 'Watches',
+    quantity: 56,
+    isPopular: true,
+  ),
   ProductModel(
       id: 'Samsung Galaxy Watch Active 23',
       title: 'Samsung Galaxy Watch Active ',
@@ -581,6 +583,7 @@ final List<ProductModel> kProducts = [
       quantity: 951,
       isPopular: true),
 ];
+*/
 
 final List kBrands = [
   'Addidas',
@@ -638,5 +641,6 @@ final List<Map<String, dynamic>> kCategoriesImages = [
   },
 ];
 
-List<ProductModel> kPopularProducts =
-    kProducts.where((element) => element.isPopular).toList();
+// List<ProductModel> kPopularProducts =
+//     kProducts.where((element) => element.isPopular).toList();
+List<ProductModel> kPopularProducts = [];

@@ -2,9 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
+import 'package:store_app/modules/user_status.dart';
+import 'package:store_app/utils/middleware/dio/dio.dart';
 import 'package:store_app/views/screens/cart/cart.dart';
 import 'package:store_app/views/screens/feeds/feeds.dart';
+import 'package:store_app/views/screens/forget_password/forget_password.dart';
 import 'package:store_app/views/screens/home/home.dart';
 import 'package:store_app/views/screens/inner_brand/brand_inner_screen.dart';
 import 'package:store_app/views/screens/category/category_screen.dart';
@@ -23,6 +26,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  await DioHelperPayment.initDio();
+
   runApp(const MyApp());
 }
 
@@ -109,11 +114,15 @@ class MyApp extends StatelessWidget {
           name: MainScreen.routeName,
           page: () => const MainScreen(),
         ),
+        GetPage(
+          name: ForgetPasswordScreen.routeName,
+          page: () => const ForgetPasswordScreen(),
+        ),
       ],
 
       title: 'Store',
-      // initialRoute: UserStatus.page,
-      home: const SignUpScreen(),
+      initialRoute: UserStatus.page,
+      // home: const RegisterScreen(),
     );
   }
 }

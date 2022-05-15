@@ -12,7 +12,7 @@ class CustomUserListTile extends StatelessWidget {
       : super(key: key);
   final String title, subTitle;
   final Widget leading;
-  final Function? onTap;
+  final VoidCallback? onTap;
   final Widget? tralling;
   final bool? showNumber;
 
@@ -23,7 +23,7 @@ class CustomUserListTile extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.red,
         child: ListTile(
-          onTap: () => onTap!(),
+          onTap: onTap,
           enableFeedback: true,
           isThreeLine: false,
           title: Text(title),

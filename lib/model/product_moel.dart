@@ -3,6 +3,7 @@ import 'dart:convert';
 class ProductModel {
   final String id;
   final String title;
+  final String? uploadedBy;
   final String description;
   final double price;
   final String imageUrl;
@@ -13,6 +14,7 @@ class ProductModel {
   final bool isPopular;
   ProductModel({
     required this.id,
+    this.uploadedBy,
     required this.title,
     required this.description,
     required this.price,
@@ -28,6 +30,7 @@ class ProductModel {
     return {
       'id': id,
       'name': title,
+      'uploadedBy': uploadedBy,
       'description': description,
       'price': price,
       'imageUrl': imageUrl,
@@ -43,6 +46,7 @@ class ProductModel {
     return ProductModel(
       id: map['id'] ?? '',
       title: map['name'] ?? '',
+      uploadedBy: map['uploadedBy'] ?? '',
       description: map['description'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       imageUrl: map['imageUrl'] ?? '',

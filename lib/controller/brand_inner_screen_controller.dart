@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:store_app/constants/constant.dart';
+import 'package:store_app/controller/home_controller.dart';
 
 class BrandInnerScreenController extends GetxController {
   late int currentIndex;
@@ -36,14 +36,15 @@ class BrandInnerScreenController extends GetxController {
     return null;
   }
 
+  final HomeController homeController = Get.find();
   void filterData({required String value}) {
-    list = kProducts.where((element) {
+    list = homeController.kProducts.where((element) {
       return element.brand.toLowerCase().contains(value.toLowerCase());
     }).toList();
   }
 
   void initData() {
-    list = kProducts.where((element) {
+    list = homeController.kProducts.where((element) {
       return element.brand
           .toLowerCase()
           .contains(values['brandName'].toLowerCase());

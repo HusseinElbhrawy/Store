@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/constant.dart';
 import 'package:store_app/constants/icons.dart';
+import 'package:store_app/controller/home_controller.dart';
 import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -13,7 +13,8 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String categoryName = Get.arguments;
-    var list = kProducts.where(
+    final HomeController homeController = Get.find();
+    var list = homeController.kProducts.where(
       (element) {
         return element.productCategoryName
             .toLowerCase()

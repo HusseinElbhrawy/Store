@@ -1,14 +1,22 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:store_app/utils/middleware/get_storage_middle_ware.dart';
+import 'package:store_app/controller/auth/login.dart';
+import 'package:store_app/utils/middleware/storage/get_storage_middle_ware.dart';
+import 'package:store_app/views/screens/main_screen.dart';
 
 class LandingScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
+  final _login = Get.lazyPut(
+    () => LoginController(),
+    fenix: true,
+  );
+  final LoginController _loginController = Get.find();
   final List<String> _images = [
     'https://media.istockphoto.com/photos/man-at-the-shopping-picture-id868718238?k=6&m=868718238&s=612x612&w=0&h=ZUPCx8Us3fGhnSOlecWIZ68y3H4rCiTnANtnjHk0bvo=',
     'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1138257321%2F0x0.jpg%3Ffit%3Dscale',
@@ -45,6 +53,16 @@ class LandingScreenController extends GetxController
     _themeMiddleware.setValue(
         status: firstTime, key: 'isFirstTimelandingScreen');
     update();
+  }
+
+  void signInAsAGuest() async {
+    await FirebaseAuth.instance.signInAnonymously();
+    Get.offNamed(MainScreen.routeName);
+  }
+
+  void signInWithGoogle() async {
+    log('tapped');
+    await _loginController.signInWithGoogle();
   }
 
   @override

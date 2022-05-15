@@ -2,10 +2,12 @@ import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/controller/home_controller.dart';
+import 'package:store_app/controller/info_screen_controller.dart';
 import 'package:store_app/views/screens/home/widgets/back_layer_menu.dart';
 import 'package:store_app/views/screens/home/widgets/front_layer_menu.dart';
+import 'package:store_app/views/widgets/loading_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,7 +16,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final InfoScreenController infoScreenController =
+        Get.put(InfoScreenController());
+
     return GetBuilder(
+      autoRemove: false,
       init: HomeController(),
       builder: (HomeController controller) {
         return ShowCaseWidget(
@@ -39,11 +45,13 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       actions: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const CircleAvatar(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleAvatar(
                             backgroundImage: NetworkImage(
-                              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+                              infoScreenController.isLoading
+                                  ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                  : infoScreenController.imageUrl,
                             ),
                           ),
                         ),
@@ -83,6 +91,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  GetX(
+                    builder: (HomeController controller) {
+                      return LoadingWidget(
+                        size: size,
+                        visible: controller.isLoading.value,
+                      );
+                    },
                   ),
                 ],
               );

@@ -17,7 +17,7 @@ class Logo extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Image.asset(
-          'assets/images/apple.jpg',
+          'assets/images/shopping-cart.png',
         ),
       ),
     );
