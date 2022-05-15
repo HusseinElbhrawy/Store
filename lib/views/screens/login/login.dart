@@ -164,7 +164,9 @@ class LoginScreen extends StatelessWidget {
                             child: CustomOutlinedButton(
                               borderColor: Colors.blue,
                               iconData: FontAwesome5.facebook_f,
-                              onTap: () {},
+                              onTap: () {
+                                loginController.signInWithFacebook();
+                              },
                               title: 'Facebook',
                             ),
                           ),

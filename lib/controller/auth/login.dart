@@ -9,6 +9,7 @@ import 'package:store_app/utils/middleware/storage/get_storage_middle_ware.dart'
 import 'package:store_app/views/screens/main_screen.dart';
 import 'package:store_app/views/widgets/snackbar/error_snackbar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class LoginController extends GetxController {
   final formkey = GlobalKey<FormState>();
@@ -123,6 +124,39 @@ class LoginController extends GetxController {
     }
     isLoading.value = false;
     return authResult;
+  }
+
+  Future signInWithFacebook() async {
+    final OAuthCredential? facebookAuthCredential;
+    try {
+      isLoading.value = true;
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+      facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      UserCredential userInfo = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
+      if (facebookAuthCredential.accessToken != null) {
+        registerModel = RegisterModel(
+          joinnedDate: Timestamp.now(),
+          uID: userInfo.user!.uid.toString(),
+          fullName: userInfo.user!.displayName.toString(),
+          email: userInfo.user!.email.toString(),
+          phoneNumber: userInfo.user!.phoneNumber.toString(),
+          imageUrl: userInfo.user!.photoURL ??
+              'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg',
+        );
+        await _firestore
+            .collection('Users')
+            .doc(userInfo.user!.uid)
+            .set(registerModel!.toMap());
+        _middleWare.setValue(status: true, key: 'isLogin');
+        isLoading.value = false;
+        Get.offAllNamed(MainScreen.routeName);
+      }
+    } catch (e) {
+      kErrorSnackBar(e.toString());
+      isLoading.value = false;
+    }
   }
 
   // @override

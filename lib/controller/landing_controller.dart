@@ -64,6 +64,10 @@ class LandingScreenController extends GetxController
     await _loginController.signInWithGoogle();
   }
 
+  void signInWithFacebook() async {
+    await _loginController.signInWithFacebook();
+  }
+
   @override
   void onInit() {
     _images.shuffle();

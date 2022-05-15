@@ -57,7 +57,7 @@ class LandingScreen extends StatelessWidget {
                                       .textTheme
                                       .headlineSmall!
                                       .copyWith(
-                                        color: Colors.grey.shade700,
+                                        color: Colors.grey.shade800,
                                       ),
                                 ),
                               ],
@@ -192,7 +192,10 @@ class LandingScreen extends StatelessWidget {
                                                 borderColor: Colors.blue,
                                                 iconData:
                                                     FontAwesome5.facebook_f,
-                                                onTap: () {},
+                                                onTap: () {
+                                                  landingScreenController
+                                                      .signInWithFacebook();
+                                                },
                                                 title: 'Facebook',
                                               ),
                                             ),
