@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/linecons_icons.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/bottom_nav_controller.dart';
+import 'package:store_app/utils/style/colors.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -28,13 +29,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
               FloatingActionButtonLocation.miniCenterDocked,
           body: controller.screens[controller.currentIndex]['page'],
           bottomNavigationBar: BottomAppBar(
-            notchMargin: 8.0,
+            color: ConstColors.backgroundColor,
             shape: const CircularNotchedRectangle(),
+            notchMargin: 8.0,
             clipBehavior: Clip.antiAlias,
             child: SizedBox(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.white,
                   border: Border(
                     top: BorderSide(
                       color: Colors.grey,
@@ -42,16 +43,19 @@ class BottomNavigationBarWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: BottomNavigationBar(
-                  backgroundColor: Colors.white,
-                  unselectedItemColor: Colors.grey,
-                  selectedItemColor: Colors.purple,
-                  currentIndex: controller.currentIndex,
-                  elevation: 5.0,
-                  type: BottomNavigationBarType.shifting,
-                  onTap: (newIndex) =>
-                      controller.bottomNavOnTao(newIndex: newIndex),
-                  items: controller.bottomNavBarItems,
+                child: Container(
+                  color: Colors.red,
+                  child: BottomNavigationBar(
+                    backgroundColor: Colors.white,
+                    unselectedItemColor: Colors.grey,
+                    selectedItemColor: Colors.purple,
+                    currentIndex: controller.currentIndex,
+                    elevation: 5.0,
+                    type: BottomNavigationBarType.shifting,
+                    onTap: (newIndex) =>
+                        controller.bottomNavOnTao(newIndex: newIndex),
+                    items: controller.bottomNavBarItems,
+                  ),
                 ),
               ),
             ),

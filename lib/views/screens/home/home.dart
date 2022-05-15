@@ -45,15 +45,19 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       actions: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              infoScreenController.isLoading
-                                  ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
-                                  : infoScreenController.imageUrl,
-                            ),
-                          ),
+                        GetBuilder(
+                          builder: (InfoScreenController controller) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                  infoScreenController.isLoading
+                                      ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                      : infoScreenController.imageUrl,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                       flexibleSpace: Container(

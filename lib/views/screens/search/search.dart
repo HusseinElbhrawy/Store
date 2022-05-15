@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store_app/constants/colors.dart';
+import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/constants/icons.dart';
 import 'package:store_app/controller/search_controller.dart';
 import 'package:store_app/views/screens/feeds/widgets/feed_screen_item_widget.dart';

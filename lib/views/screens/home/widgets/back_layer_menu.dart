@@ -97,32 +97,33 @@ class BackLayerMenu extends StatelessWidget {
             margin: const EdgeInsets.all(16),
             child: Row(
               children: [
-                Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    height: 90,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Container(
-                      // clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            infoScreenController.isLoading
-                                ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
-                                : infoScreenController.imageUrl,
+                GetBuilder(
+                    builder: (InfoScreenController controller) => Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            height: 90,
+                            width: 90,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Container(
+                              // clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    infoScreenController.isLoading
+                                        ? 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
+                                        : infoScreenController.imageUrl,
+                                  ),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
                           ),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                        )),
                 const SizedBox(height: 10.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

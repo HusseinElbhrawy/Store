@@ -15,7 +15,7 @@ class CategoryItemWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 3.5,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        // color: const Color.fromARGB(255, 35, 43, 65),
         borderRadius: BorderRadius.circular(8),
       ),
       child: ClipRRect(

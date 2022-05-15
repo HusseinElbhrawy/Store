@@ -132,6 +132,7 @@ class LandingScreen extends StatelessWidget {
                                   ],
                                 ),
                                 Showcase(
+                                  radius: BorderRadius.circular(16),
                                   description:
                                       'Or you can sign in with other wayes',
                                   key: landingScreenController
