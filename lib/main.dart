@@ -15,6 +15,8 @@ import 'package:store_app/views/screens/category/category_screen.dart';
 import 'package:store_app/views/screens/landing/landing.dart';
 import 'package:store_app/views/screens/login/login.dart';
 import 'package:store_app/views/screens/main_screen.dart';
+import 'package:store_app/views/screens/orders/orders.dart';
+import 'package:store_app/views/screens/payment/register/check_out.dart';
 import 'package:store_app/views/screens/product_details/product_details.dart';
 import 'package:store_app/views/screens/search/search.dart';
 import 'package:store_app/views/screens/signup/signup.dart';
@@ -28,15 +30,9 @@ void main() async {
   await GetStorage.init();
   await Firebase.initializeApp();
   await DioHelperPayment.initDio();
-
   runApp(const MyApp());
 }
 
-/*
-   imageSrc: "assets/images/shopping-cart.png",
-      text: "Store",
-      textType: TextType.TyperAnimatedText,
-*/
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -123,6 +119,14 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: ForgetPasswordScreen.routeName,
           page: () => const ForgetPasswordScreen(),
+        ),
+        GetPage(
+          name: OrdersScreen.routeName,
+          page: () => const OrdersScreen(),
+        ),
+        GetPage(
+          name: CheckOutScreen.routeName,
+          page: () => const CheckOutScreen(),
         ),
       ],
       title: 'Store App',

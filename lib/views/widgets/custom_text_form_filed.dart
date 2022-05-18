@@ -16,6 +16,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.isPassword,
     this.keyboard = TextInputType.text,
     this.formatters,
+    this.enabled = true,
   }) : super(key: key);
   final String hint;
   final bool? isPassword;
@@ -28,9 +29,11 @@ class CustomTextFormFiled extends StatelessWidget {
   final ValueChanged<String>? onSubmit;
   final TextInputType? keyboard;
   final List<TextInputFormatter>? formatters;
+  final bool enabled;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       inputFormatters: formatters,
       autocorrect: true,
       enableSuggestions: true,

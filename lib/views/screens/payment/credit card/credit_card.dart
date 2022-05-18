@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/constants/payment.dart';
 import 'package:store_app/controller/payment/payment_controller.dart';
+import 'package:store_app/views/screens/main_screen.dart';
 import 'package:store_app/views/widgets/loading_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -12,10 +13,38 @@ class CreditCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var argument = Get.arguments;
+    log('xxx================xxx');
+    log(argument['argument']['price'].toString());
+    List<String> productsId = [];
+    List<String> quantity = [];
+    for (var i = 0;
+        i < argument['argument']['argument']['products'].toList().length;
+        i++) {
+      productsId
+          .add(argument['argument']['argument']['products'][i].id.toString());
+      quantity.add(
+          argument['argument']['argument']['products'][i].quantity.toString());
+    }
+
     final PaymentController paymentController = Get.find();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text('Payment'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.offAllNamed(MainScreen.routeName);
+            },
+            icon: const Icon(
+              Icons.home_outlined,
+            ),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           WebView(
@@ -48,15 +77,26 @@ class CreditCardScreen extends StatelessWidget {
             },
             onPageFinished: (String url) {
               log('Page finished loading: $url');
+              if (url.contains('data.message=Approved')) {
+                //ToDo: upload new order to firebase firestore;
+                paymentController.uploadOrderDetailsToFirebaseFiredtore(
+                  productsId: productsId,
+                  quantity: quantity,
+                  price: argument['argument']['price'].toString(),
+                );
+              }
+              log('==================================');
             },
             gestureNavigationEnabled: true,
             backgroundColor: const Color(0x00000000),
           ),
           GetBuilder(
-            builder: (PaymentController controller) => LoadingWidget(
-              size: size,
-              visible: paymentController.showLoading,
-            ),
+            builder: (PaymentController controller) {
+              return LoadingWidget(
+                size: size,
+                visible: paymentController.showLoading,
+              );
+            },
           ),
         ],
       ),

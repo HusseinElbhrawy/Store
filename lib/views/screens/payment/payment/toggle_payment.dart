@@ -34,8 +34,11 @@ class TogglePayment extends StatelessWidget {
                     phoneNumber: argument['phoneNumber'],
                   );
                   await Get.off(
-                    () => CreditCardScreen(),
-                    arguments: kFinalTokenCardID,
+                    () => const CreditCardScreen(),
+                    arguments: {
+                      'cardId': kFinalTokenCardID,
+                      'argument': argument,
+                    },
                   );
                 },
                 title: 'Pay With Credit Card',

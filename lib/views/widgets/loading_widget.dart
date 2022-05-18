@@ -20,7 +20,7 @@ class LoadingWidget extends StatelessWidget {
         height: size.height,
         child: const Center(
           child: SpinKitFadingCube(
-            color: Color.fromARGB(255, 158, 158, 158),
+            color: Color.fromARGB(255, 58, 54, 54),
           ),
         ),
       ),

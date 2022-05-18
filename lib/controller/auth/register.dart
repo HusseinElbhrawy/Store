@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:store_app/utils/style/colors.dart';
@@ -123,12 +122,12 @@ class SignupController extends GetxController {
   String? imageUrl;
   String? userId;
   Future _uploadProfileImageToFirebaseStorage() async {
-    String imageName = basename(imageFile!.path);
+    // String imageName = basename(imageFile!.path);
 
     final Reference storage = FirebaseStorage.instance
         .ref()
         .child('UsersProfileImages')
-        .child(userId! + imageName);
+        .child(userId! /*+ imageName*/);
     await storage.putFile(imageFile!);
     imageUrl = await storage.getDownloadURL();
     update();

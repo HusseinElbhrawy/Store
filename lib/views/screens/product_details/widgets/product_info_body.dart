@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:store_app/utils/style/colors.dart';
 import 'package:store_app/controller/home_controller.dart';
 import 'package:store_app/model/product_moel.dart';
@@ -50,7 +51,9 @@ class ProductInfoBody extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   splashColor: Colors.purple.shade200,
-                  onTap: () {},
+                  onTap: () {
+                    Share.share(product.title);
+                  },
                   borderRadius: BorderRadius.circular(30),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),

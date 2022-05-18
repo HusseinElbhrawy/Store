@@ -101,6 +101,41 @@ class InfoScreenBody extends StatelessWidget {
                 Get.toNamed(CartScreen.routeName);
               },
             ),
+            // CustomUserListTile(
+            //   leading: GetBuilder(
+            //       init: CartController(),
+            //       builder: (CartController controller) {
+            //         return SizedBox(
+            //           height: 35,
+            //           child: Stack(
+            //             children: [
+            //               PositionedDirectional(
+            //                 top: 0.0,
+            //                 end: 0.0,
+            //                 width: 0,
+            //                 child: Text(controller.cartItems.isEmpty
+            //                     ? ''
+            //                     : controller.cartItems.length.toString()),
+            //               ),
+            //               Icon(
+            //                 Icons.badge_outlined,
+            //                 size: 25,
+            //                 color: controller.cartItems.isEmpty
+            //                     ? Colors.grey
+            //                     : Colors.red,
+            //               ),
+            //             ],
+            //           ),
+            //         );
+            //       }),
+            //   subTitle: '',
+            //   title: 'Orders',
+            //   showNumber: true,
+            //   tralling: const Icon(Icons.arrow_forward_ios),
+            //   onTap: () {
+            //     Get.toNamed(OrdersScreen.routeName);
+            //   },
+            // ),
             const CustomTitle(title: 'User Information'),
             const Divider(thickness: 2),
             GetBuilder(

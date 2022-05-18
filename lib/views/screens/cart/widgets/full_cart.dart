@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/cart_controller.dart';
 import 'package:store_app/views/screens/cart/widgets/cart_Item.dart';
+import 'package:store_app/views/screens/payment/register/check_out.dart';
 import 'package:store_app/views/widgets/custom_dialog.dart';
 
 class FullCart extends StatelessWidget {
@@ -67,7 +68,15 @@ class FullCart extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(
+                    CheckOutScreen.routeName,
+                    arguments: {
+                      'price': cartController.totalAmount,
+                      'products': cartController.cartItems.values.toList(),
+                    },
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
                   padding: MaterialStateProperty.all(

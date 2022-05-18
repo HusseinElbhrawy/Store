@@ -154,7 +154,7 @@ class LoginController extends GetxController {
         Get.offAllNamed(MainScreen.routeName);
       }
     } catch (e) {
-      kErrorSnackBar(e.toString());
+      kErrorSnackBar('Please , Select account to login in');
       isLoading.value = false;
     }
   }

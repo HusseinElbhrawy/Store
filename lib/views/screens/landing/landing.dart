@@ -8,6 +8,7 @@ import 'package:store_app/views/screens/landing/widgets/auth_button.dart';
 import 'package:store_app/views/screens/login/login.dart';
 import 'package:store_app/views/screens/signup/signup.dart';
 import 'package:store_app/views/widgets/custom_outlined_button_with_icon.dart';
+import 'package:store_app/views/widgets/loading_widget.dart';
 
 class LandingScreen extends StatelessWidget {
   static const routeName = '/landingScreen';
@@ -223,6 +224,15 @@ class LandingScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                      ),
+                      GetX(
+                        init: LandingScreenController(),
+                        builder: (LandingScreenController controller) {
+                          return LoadingWidget(
+                            size: size,
+                            visible: controller.isLoading.value,
+                          );
+                        },
                       ),
                     ],
                   ),

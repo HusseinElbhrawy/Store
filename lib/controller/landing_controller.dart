@@ -10,6 +10,7 @@ import 'package:store_app/views/screens/main_screen.dart';
 
 class LandingScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  RxBool isLoading = false.obs;
   late AnimationController _animationController;
   late Animation<double> _animation;
   final _login = Get.lazyPut(
@@ -55,17 +56,23 @@ class LandingScreenController extends GetxController
   }
 
   void signInAsAGuest() async {
+    isLoading.value = true;
     await FirebaseAuth.instance.signInAnonymously();
+    isLoading.value = false;
     Get.offNamed(MainScreen.routeName);
   }
 
   void signInWithGoogle() async {
     log('tapped');
+    isLoading.value = true;
     await _loginController.signInWithGoogle();
+    isLoading.value = false;
   }
 
   void signInWithFacebook() async {
+    isLoading.value = true;
     await _loginController.signInWithFacebook();
+    isLoading.value = false;
   }
 
   @override
@@ -86,6 +93,7 @@ class LandingScreenController extends GetxController
 
   @override
   void onClose() {
+    // _images.shuffle();
     _animationController.dispose();
     super.onClose();
   }
