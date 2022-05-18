@@ -1,16 +1,22 @@
-# store_app
+# Store App 
 
-A new Flutter project.
+A new Flutter project ,it is an e-commerce app with firebase backend  
 
-## Getting Started
+### Features 
+1. Native Splash Screen
+2. Login with Email and Password
+3. Login With Google and Facebook Account
+4. Login as a guest 
+5. Reset password 
+6. Integration with Payment gateway 
 
-This project is a starting point for a Flutter application.
+## Presentation 
 
-A few resources to get you started if this is your first Flutter project:
+![](screens/StoreApp1.png)
+![](screens/StoreApp2.png)
+![](screens/StoreApp3.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
