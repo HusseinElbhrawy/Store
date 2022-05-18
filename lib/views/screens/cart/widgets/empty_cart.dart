@@ -17,7 +17,7 @@ class EmptyCart extends StatelessWidget {
             'assets/images/emptycart.png',
           ),
           Text(
-            'Your Card Is Empty',
+            'Your Cart Is Empty',
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
